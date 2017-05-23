@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-wysihtml5.css" />
 <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
 
@@ -27,7 +28,7 @@
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li  class=""><a title="" href=""><i class="fa fa-search"></i>  <span class="text"> Search Serial Number</span></a>
+    <li  class=""><a title="" href="<?= base_url('index.php/SearchSN/')?>"><i class="fa fa-search"></i>  <span class="text" style="padding-left: 1em"> Search Serial Number</span></a>
 
     <!--<a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><b class="caret">-->
 
@@ -37,7 +38,7 @@
         <li><a href="#"><i class="icon-key"></i> Log Out</a></li>
       </ul>-->
     </li>
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="fa fa-money"></i>  <span class="text"> Open Revenue All </span><b class="caret"></b></a>
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="fa fa-money"></i>  <span class="text" style="padding-left: 1em"> Open Revenue All </span><b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="#"><i class=""></i> Infrastructure Delivery</a></li>
           <ul>
@@ -77,6 +78,6 @@
           </ul>
       </ul>
     </li>
-    <li class=""><a title="" href="login.html"><i class="fa fa-wrench"></i> <span class="text"> Open Performance Assurance</span></a></li>
+    <li class=""><a title="" href="<?= base_url('index.php/PerformAssurance/')?>"><i class="fa fa-wrench"></i> <span class="text" style="padding-left: 1em"> Open Performance Assurance</span></a></li>
   </ul>
 </div> 

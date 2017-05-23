@@ -20,5 +20,43 @@
 <script>
   $('.textarea_editor').wysihtml5();
 </script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+
+  $(".Squery").keyup(function(){
+    // console.log( $('.formSearch').serialize());
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url('index.php/Welcome/search_sn/');?>",
+        data : $('.formSearch').serialize(),
+        success: function(data){
+            // console.log('a');
+          $('.isi').empty();
+          $('.isi').append(data);
+        }
+      });
+  });
+
+  $("#vendor").change(function(){
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url('index.php/SearchSN/search_sn/');?>",
+        data : $('.formSearch').serialize(),
+        success: function(data){
+            // console.log('a');
+          $('.isi').empty();
+          $('.isi').append(data);
+        }
+      });
+  });
+
+  $('.FormSearch').submit(function(e){
+    e.preventDefault();
+  });
+</script>
 </body>
 </html>
