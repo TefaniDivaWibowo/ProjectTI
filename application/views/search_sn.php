@@ -1,5 +1,5 @@
   
-<div id="content">
+<div id="content" style="margin-left: 0px;">
 <div id="content-header">
   <div id="breadcrumb"></div>
   <h1>Search Serial Number</h1>
@@ -9,11 +9,6 @@
   <div class="row-fluid">
     <div class="span12">
           <form method="post" action="" class="formSearch">
-              <!-- <div class="form-group">
-                <label>Serial Number</label>
-                <input style="width: 100%;" type="text" class="Squery" name="sn" placeholder="Masukkan SN">
-              </div> -->
-              <!-- /.form-group -->
               <div class="form-group">
                 <div class="span3">
                   <p style="text-align: center;">Pilih Nama Vendor</p>
@@ -27,11 +22,8 @@
                 </div>
               </div>
 
-              <?php error_reporting(0);?>
-
               <br>
               <hr>
-
               <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>

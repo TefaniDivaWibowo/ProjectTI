@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Aplikasi Revenue</title>
+<title>Aplikasi Project TI</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css" />
@@ -26,57 +26,74 @@
 
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
+<nav>
   <ul class="nav">
-    <li  class=""><a title="" href=""><i class="fa fa-search"></i>  <span class="text">Cari Serial Number</span></a>
-
-    <!--<a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><b class="caret">-->
-
-      <!--<ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-        <li class="divider"></li>
-        <li><a href="#"><i class="icon-key"></i> Log Out</a></li>
-      </ul>-->
-    </li>
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="fa fa-money"></i>  <span class="text">Revenue</span><b class="caret"></b></a>
+    <li  class=""><a title="" href="<?= base_url('index.php/searchsn') ?>"><i class="fa fa-search"></i><span class="text"> Search Serial Number</span></a>    </li>
+    <li class="dropdown" id="profile-messages">
+    <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
+      <i class="fa fa-money"></i>  <span class="text"> Open Revenue All </span><b class="caret"></b>
+    </a>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class=""></i> Infrastructure Delivery</a></li>
-          <ul>
+
+        <li class="dropdown" id="profile-messages2">
+        <a data-toggle="dropdown" data-target="#profile-messages2" class="dropdown-toggle">
+        Infrastructure Delivery </span><b class="caret"></b>
+        </a>
+          <ul class="dropdown-menu">
             <li><a href="#"><i class=""></i> Migration</a></li>
           </ul>
+        </li>
+
         <li class="divider"></li>
-        <li><a href="#"><i class=""></i> Assurance</a></li>
-          <ul>
-            <li><a href="#"><i class=""></i> View </a></li>
+
+        <li class="dropdown" id="profile-messages2">
+        <a data-toggle="dropdown" data-target="#profile-messages2" class="dropdown-toggle">
+        Assurance </span><b class="caret"></b>
+        </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class=""></i> View</a></li>
           </ul>
-        <li class="divider"></li>
+        </li>
+                <li class="divider"></li>
         <li><a href="#"><i class=""></i> Provisioning Indihome</a></li>
         <li class="divider"></li>
         <li><a href="#"><i class=""></i> Maintenance Infra Support</a></li>
         <li class="divider"></li>
-        <li><a href="#"><i class=""></i> Infrastuktur Service</a></li>
+
+        <li class="dropdown" id="profile-messages3">
+        <a data-toggle="dropdown" data-target="#profile-messages3" class="dropdown-toggle">
+        Infrastuktur Service </span><b class="caret"></b>
+        </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class=""></i> Maintenance Akses</a></li>
+            <li><a href="#"><i class=""></i> Gamas & QE</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown" id="profile-messages2">
+        <a data-toggle="dropdown" data-target="#profile-messages2" class="dropdown-toggle">
+        Service Delivery </span><b class="caret"></b>
+        </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class=""></i> Prog Optimazation PT 3</a></li>
+            <li><a href="#"><i class=""></i> NODE B</a></li>
+            <li><a href="#"><i class=""></i> HEM</a></li>
+            <li><a href="#"><i class=""></i> Prog Optimization PT2</a></li>
+          </ul>
+        </li>
+
       </ul>
     </li>
-    <li class=""><a title="" href="login.html"><i class="fa fa-wrench"></i> <span class="text">Assurance MTTR</span></a></li>
+    <li class=""><a title="" href="<?= base_url('index.php/performassurance') ?>"><i class="fa fa-wrench"></i> <span class="text"> Open Performance Assurance</span></a></li>
   </ul>
-</div> 
+</nav>
+</div>
 
 <!--sidebar-menu-->
-
-<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
-    <li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li><a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
-    <li class="submenu"><a href="#"><i class="icon icon-list"></i> <span>Tables</span> <span class="label label-important">2</span></a>
-      <ul>
-        <li><a href=" //echo base_url()."index.php/home/tampil";">Data Provisioning</a></li>
-        <li><a href="#">Data Assurance</a></li>
-      </ul>
-    </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-list"></i> <span>Forms</span> <span class="label label-important">2</span></a>
-      <ul>
-        <li><a href=" //echo base_url();">Form Provisioning</a></li>
-        <li><a href="#">Form Assurance</a></li>
-      </ul>
-    </li>
+    <li class="active"><a href="<?= base_url('index.php/PerformAssurance')?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="<?= base_url('index.php/PerformAssurance/open')?>"><i class="icon icon-signal"></i> <span>Open Performance Assurance</span></a> </li>
   </ul>
 </div>
+<!--sidebar-menu-->

@@ -2,7 +2,7 @@
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"></div>
-  <h1>Open Performance Assurance</h1>
+  <h1>Performance Assurance</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -23,13 +23,12 @@
                   
                 </div>
               </div>
-
-              <?php error_reporting(0);?>
+              </form>
 
               <br>
               <hr>
 
-              <div class="widget-box">
+            <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
           </div>
@@ -80,7 +79,58 @@
                 </tr>
               </thead>
               <tbody class="isi">
-                
+                <?php
+                  $no = 0;
+                      foreach($data_open as $u){
+                        $no++;
+
+                  ?>
+                  <tr>
+                    <td><?= $no;?></td>
+                    <td><?= $u['incident'];?></td>
+                    <td><?= $u['customer_name'];?></td>
+                    <td><?= $u['summary'];?></td>
+                    <td><?= $u['owner_group'];?></td>
+                    <td><?= $u['owner'];?></td>
+                    <td><?= $u['last_update_work_log'];?></td>
+                    <td><?= $u['last_update_work_log_date'];?></td>
+                    <td><?= $u['source'];?></td>
+                    <td><?= $u['segment'];?></td>
+                    <td><?= $u['channel'];?></td>
+                    <td><?= $u['customer_segment'];?></td>
+                    <td><?= $u['service_id'];?></td>
+                    <td><?= $u['service_no'];?></td>
+                    <td><?= $u['service_type'];?></td>
+                    <td><?= $u['top_priority'];?></td>
+                    <td><?= $u['slg'];?></td>
+                    <td><?= $u['technology'];?></td>
+                    <td><?= $u['datek'];?></td>
+                    <td><?= $u['rk_name'];?></td>
+                    <td><?= $u['induk_gamas'];?></td>
+                    <td><?= $u['reported date'];?></td>
+                    <td><?= $u['ttr_customer'];?></td>
+                    <td><?= $u['ttr_nasional'];?></td>
+                    <td><?= $u['ttr_regional'];?></td>
+                    <td><?= $u['ttr_witel'];?></td>
+                    <td><?= $u['ttr_mitra'];?></td>
+                    <td><?= $u['ttr_agent'];?></td>
+                    <td><?= $u['status'];?></td>
+                    <td><?= $u['osm_resolved_code'];?></td>
+                    <td><?= $u['last_updated_ticket'];?></td>
+                    <td><?= $u['status_date'];?></td>
+                    <td><?= $u['closed_reop3n_by'];?></td>
+                    <td><?= $u['resolved by'];?></td>
+                    <td><?= $u['workzone'];?></td>
+                    <td><?= $u['mitra_pa'];?></td>
+                    <td><?= $u['witel'];?></td>
+                    <td><?= $u['regional'];?></td>
+                    <td><?= $u['incident_symptom'];?></td>
+                    <td><?= $u['solution_segment'];?></td>
+                    <td><?= $u['actual_solution'];?></td>
+                  </tr>
+                  <?php
+                  }
+                ?>
               </tbody>
               <tfoot>
                 <tr>
@@ -127,7 +177,14 @@
                 </tr>
               </tfoot>
             </table>
+            </div>
+            </div>
+
+
           </div>
+        </div>
+        </div>
+        </div>
           </div>
         </form>
     </div>

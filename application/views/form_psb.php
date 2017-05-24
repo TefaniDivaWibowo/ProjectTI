@@ -1,6 +1,6 @@
 <!--close-left-menu-stats-sidebar-->
 
-<div id="content">
+<div id="content" style="margin-left:0;">
 <div id="content-header">
   <div id="breadcrumb"></div>
   <h1>Form Provisioning</h1>
