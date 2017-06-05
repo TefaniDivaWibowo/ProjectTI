@@ -1,8 +1,22 @@
-<div id="content">
- <div id="content-header">
-  <div id="breadcrumb"></div>
-  <h1>Dashboard Performance Assurance</h1>
+<!--sidebar-menu-->
+
+<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+  <ul>
+    <li class="active"><a href="<?= base_url('index.php/PerformAssurance')?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <!--<li> <a href=""><i class="icon icon-table"></i> <span>Open Performance Assurance</span></a> </li>-->
+    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open</span> <span class="label label-important">2</span></a>
+      <ul>
+        <li><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open</a></li>
+        <li><a href="form-common.html">Report Open</a></li>
+      </ul>
+    </li>
+  </ul>
 </div>
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"><!--<a href="#" title="Go to Home" class="tip-bottom">--></div>
+    <h1>Dashboard Performance Assurance</h1>
+  </div>
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">
@@ -51,3 +65,4 @@
     </div>
   </div>
 </div>
+

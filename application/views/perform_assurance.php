@@ -1,39 +1,36 @@
-  
-<div id="content">
-<div id="content-header">
-  <div id="breadcrumb"></div>
-  <h1>Performance Assurance</h1>
+<!--Design Tabel-->
+<style type="text/css">
+  th, td { white-space: nowrap; }
+</style>
+
+<!--sidebar-menu-->
+<div id="sidebar"> <a href="#" class="visible-phone"></a>
+  <ul>
+    <li><a href="<?= base_url('index.php/PerformAssurance')?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open</span> <span class="label label-important">2</span></a>
+      <ul>
+        <li class="active"><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open</a></li>
+        <li><a href="form-common.html">Report Open</a></li>
+      </ul>
+    </li>
+  </ul>
 </div>
-<div class="container-fluid">
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"><!--<a href="#" title="Go to Home" class="tip-bottom">--></div>
+    <h1>Performance Assurance</h1>
+  </div>
+  <div class="container-fluid">
   <hr>
   <div class="row-fluid">
     <div class="span12">
-          <form method="post" action="" class="formSearch">
-              <!-- <div class="form-group">
-                <label>Serial Number</label>
-                <input style="width: 100%;" type="text" class="Squery" name="sn" placeholder="Masukkan SN">
-              </div> -->
-              <!-- /.form-group -->
-              <div class="form-group">
-                <div class="span6">
-                  <button class="btn btn-primary">Import</button>
-                  <button class="btn btn-info">Export</button>
-                </div>
-                <div class="span3" align="left">
-                  
-                </div>
-              </div>
-              </form>
-
-              <br>
-              <hr>
-
-            <div class="widget-box">
+        <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
           </div>
+          <!--style="overflow-x:auto;"-->
           <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
+            <table  style="overflow-x:auto;" class="table table-bordered data-table">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -67,6 +64,7 @@
                   <th>Status</th>
                   <th>OSM Resolved Code</th>
                   <th>Last Update Ticket</th>
+                  <th>Status Date</th>
                   <th>Closed/Reopen By</th>
                   <th>Resolved By</th>
                   <th>Workzone</th>
@@ -118,8 +116,8 @@
                     <td><?= $u['osm_resolved_code'];?></td>
                     <td><?= $u['last_updated_ticket'];?></td>
                     <td><?= $u['status_date'];?></td>
-                    <td><?= $u['closed_reop3n_by'];?></td>
-                    <td><?= $u['resolved by'];?></td>
+                    <td><?= $u['closed_reopen_by'];?></td>
+                    <td><?= $u['resolved_by'];?></td>
                     <td><?= $u['workzone'];?></td>
                     <td><?= $u['mitra_pa'];?></td>
                     <td><?= $u['witel'];?></td>
@@ -165,6 +163,7 @@
                   <th>Status</th>
                   <th>OSM Resolved Code</th>
                   <th>Last Update Ticket</th>
+                  <th>Status Date</th>
                   <th>Closed/Reopen By</th>
                   <th>Resolved By</th>
                   <th>Workzone</th>
@@ -177,21 +176,11 @@
                 </tr>
               </tfoot>
             </table>
-            </div>
-            </div>
-
-
           </div>
-        </div>
-        </div>
-        </div>
           </div>
-        </form>
     </div>
   </div>
 </div>
 </div>
 
 
-
-  

@@ -9,7 +9,7 @@
   <div class="row-fluid">
     <div class="span12">
           <form method="post" action="" class="formSearch">
-              <div class="form-group">
+              <div class="controls form-group">
                 <div class="span3">
                   <p style="text-align: center;">Pilih Nama Vendor</p>
                 </div>

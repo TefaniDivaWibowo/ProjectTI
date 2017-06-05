@@ -1,51 +1,21 @@
 <!--Footer-part-->
 <div class="row-fluid">
-  <div id="footer" class="span12"> 2017 &copy; Telkom Akses Indonesia </div>
+  <div id="footer" class="span12"> 2017 &copy; PT Telkom Akses <a href="http://themedesigner.in">Malang</a> </div>
 </div>
-<!--end-Footer-part--> 
+<!--end-Footer-part-->
 <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script> 
 <script src="<?php echo base_url();?>assets/js/jquery.ui.custom.js"></script> 
 <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script> 
-<script src="<?php echo base_url();?>assets/js/bootstrap-colorpicker.js"></script> 
-<script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script> 
-<script src="<?php echo base_url();?>assets/js/jquery.toggle.buttons.js"></script> 
-<script src="<?php echo base_url();?>assets/js/masked.js"></script> 
 <script src="<?php echo base_url();?>assets/js/jquery.uniform.js"></script> 
 <script src="<?php echo base_url();?>assets/js/select2.min.js"></script> 
-<script src="<?php echo base_url();?>assets/js/matrix.js"></script> 
-<script src="<?php echo base_url();?>assets/js/matrix.form_common.js"></script> 
-<script src="<?php echo base_url();?>assets/js/wysihtml5-0.3.0.js"></script> 
-<script src="<?php echo base_url();?>assets/js/jquery.peity.min.js"></script> 
-<script src="<?php echo base_url();?>assets/js/bootstrap-wysihtml5.js"></script> 
-
 <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo base_url();?>assets/js/matrix.js"></script> 
 <script src="<?php echo base_url();?>assets/js/matrix.tables.js"></script>
 
-<script>
-  $('.textarea_editor').wysihtml5();
-</script>
+<!--SearchSN start-->
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous">
-</script>
 <script type="text/javascript">
-
-  $(".Squery").keyup(function(){
-    // console.log( $('.formSearch').serialize());
-    $.ajax({
-        type: "POST",
-        url: "<?php echo base_url('index.php/Welcome/search_sn/');?>",
-        data : $('.formSearch').serialize(),
-        success: function(data){
-            // console.log('a');
-          $('.isi').empty();
-          $('.isi').append(data);
-        }
-      });
-  });
-
-  $("#vendor").change(function(){
+	$("#vendor").change(function(){
     $.ajax({
         type: "POST",
         url: "<?php echo base_url('index.php/SearchSN/search_sn/');?>",
@@ -56,11 +26,26 @@
           $('.isi').append(data);
         }
       });
-  });
+  	});
 
   $('.FormSearch').submit(function(e){
     e.preventDefault();
   });
 </script>
+
+<!--SearchSN end-->
+
+<!--DataTable Horizontal Scroll Start-->
+<!--<script type="text/javascript" href="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" href="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#example').DataTable( {
+	        "scrollX": true
+	    } );
+	} );
+</script>-->
+<!--DataTable Horizontal Scroll End-->
+
 </body>
 </html>

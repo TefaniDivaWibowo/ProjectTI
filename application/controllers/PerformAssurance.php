@@ -11,7 +11,7 @@ class PerformAssurance extends CI_Controller {
 
     public function index()
 	{
-		$this->load->view('header_open');
+		$this->load->view('header');
 		$this->load->view('dash_perform_assurance');
 		$this->load->view('footer');
 	}
@@ -19,8 +19,9 @@ class PerformAssurance extends CI_Controller {
 	public function open()
 	{
 		$data['data_open'] 	= $this->PerformAss->get_all_data();
-		$this->load->view('header_open');
+		$this->load->view('header');
 		$this->load->view('perform_assurance', $data);
+		//$this->load->view('tables');
 		$this->load->view('footer');
 	}
 }
