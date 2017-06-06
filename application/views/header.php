@@ -15,8 +15,12 @@
 </head>
 
 <!--DataTable Horizontal Scroll Start-->
-<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">-->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"> -->
 <!--DataTable Horizontal Scroll End-->
+
+<!--DataTable Pagination Start-->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"> -->
+<!--End-->
 
 <body>
 
