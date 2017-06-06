@@ -49,7 +49,7 @@ error_reporting(0);
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"></div>
-  <h1>Form Provioning</h1>
+  <h1>Form Prog Optimization PT3</h1>
 </div>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -60,7 +60,7 @@ error_reporting(0);
           </div>
           <div class="widget-content">
             
-            <form action="<?php echo base_url()."index.php/revenue/insert_psb";?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url()."index.php/revenue/insert_pt3";?>" method="post" enctype="multipart/form-data">
            <div class="control-group">
               <label class="control-label">Witel :</label>
               <div class="controls">

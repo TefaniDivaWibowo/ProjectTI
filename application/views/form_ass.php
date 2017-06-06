@@ -46,10 +46,11 @@ error_reporting(0);
   </ul>
 </div>
 
+<form action="<?php echo base_url()."index.php/revenue/insert_ass";?>" method="post" enctype="multipart/form-data">
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"></div>
-  <h1>Form Provioning</h1>
+  <h1>Form Assurance</h1>
 </div>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -59,8 +60,6 @@ error_reporting(0);
             <h5>Data Pelanggan</h5>
           </div>
           <div class="widget-content">
-            
-            <form action="<?php echo base_url()."index.php/revenue/insert_psb";?>" method="post" enctype="multipart/form-data">
            <div class="control-group">
               <label class="control-label">Witel :</label>
               <div class="controls">
@@ -219,11 +218,11 @@ error_reporting(0);
             <div class="form-actions">
               <button type="submit" class="btn btn-success">Kirim</button>
             </div>
-          </form>
         </div>
       </div>
     </div>
   </div>
+  </form>
 </div></div>
 </body>
 </html>
