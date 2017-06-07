@@ -22,6 +22,12 @@ class Revenue extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function coba_desain2(){
+		$this->load->view('header');
+		$this->load->view('desain');
+		$this->load->view('footer');
+	}
+
 	public function form_psb(){
 		$this->load->view('header');
 		$this->load->view('form_psb');
@@ -31,6 +37,7 @@ class Revenue extends CI_Controller {
 	public function data_psb(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_psb();
+		$data['rev'] = $this->RevModel->get_psb();
 		$this->load->view('table_psb', $data);
 		$this->load->view('footer');
 	}
@@ -44,6 +51,7 @@ class Revenue extends CI_Controller {
 	public function data_ass(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_ass();
+		$data['rev'] = $this->RevModel->get_ass();
 		$this->load->view('table_ass', $data);
 		$this->load->view('footer');
 	}
@@ -57,6 +65,7 @@ class Revenue extends CI_Controller {
 	public function data_migrasi(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_migrasi();
+		$data['rev'] = $this->RevModel->get_migrasi();
 		$this->load->view('table_migrasi', $data);
 		$this->load->view('footer');
 	}
@@ -70,7 +79,8 @@ class Revenue extends CI_Controller {
 	public function data_mainis(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_mainis();
-		$this->load->view('table_migrasi', $data);
+		$data['rev'] = $this->RevModel->get_mainis();
+		$this->load->view('table_mainis', $data);
 		$this->load->view('footer');
 	}
 
@@ -83,6 +93,7 @@ class Revenue extends CI_Controller {
 	public function data_main_access(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_main_access();
+		$data['rev'] = $this->RevModel->get_main_access();
 		$this->load->view('data_main_access', $data);
 		$this->load->view('footer');
 	}
@@ -96,6 +107,7 @@ class Revenue extends CI_Controller {
 	public function data_gamas(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_gamas();
+		$data['rev'] = $this->RevModel->get_gamas();
 		$this->load->view('table_gamas', $data);
 		$this->load->view('footer');
 	}
@@ -132,6 +144,7 @@ class Revenue extends CI_Controller {
 	public function data_sd(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_sd();
+		$data['rev'] = $this->RevModel->get_sd();
 		$this->load->view('table_sd', $data);
 		$this->load->view('footer');
 	}

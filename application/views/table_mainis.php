@@ -1,4 +1,5 @@
 <!--sidebar-menu-->
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/DataTabel.css" />
 <?php
 error_reporting(0);
 ?>
@@ -13,7 +14,7 @@ error_reporting(0);
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
-        <li class="active"><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-bandcamp"></i> <span>Provisioning Indihome</span> <span class="label label-important">2</span></a>
@@ -25,7 +26,7 @@ error_reporting(0);
     <li class="submenu"> <a href=""><i class="icon icon-cog"></i> <span>Maintenance Infra Sup</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/mainis')?>">Form</a></li>
-        <li><a href="<?= base_url('index.php/Revenue/data_mainis')?>">Data</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/data_mainis')?>">Data</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-bandcamp"></i> <span>Infrastructure Service</span> <span class="label label-important">4</span></a>
@@ -52,13 +53,13 @@ error_reporting(0);
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"></div>
-    <h1>Data Assurance</h1>
+    <h1>Data Maintenance Infra Support</h1>
   </div>
 
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-      <h4>Revenue Assurance Rp <b><?= $rev;?></b></h4>
+      <h4>Revenue Maintenance Infra Support Rp <b><?= $rev;?></b></h4>
       </div>
     </div>
   </div>
@@ -67,7 +68,7 @@ error_reporting(0);
     <hr>
     <div class="row-fluid">
       <div class="span12">
-          <div class="widget-content nopadding">
+          <div class="widget-content nopadding"  style="overflow-x:auto;">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
@@ -81,12 +82,12 @@ error_reporting(0);
                   <th>ONT</th>
                   <th>STB</th>
                   <th>Layanan</th>
-                  <!-- <th>Jenis Kabel</th>
+                  <th>Jenis Kabel</th>
                   <th>Panjang Kabel</th>
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
                   <th>Patch Cord</th>
-                  <th>Patch Cord Tambahan</th>
+                  <!-- <th>Patch Cord Tambahan</th>
                   <th>Kabel UTP</th>
                   <th>Kabel UTP Tambahan</th>
                   <th>Kabel PVC</th>
@@ -117,12 +118,12 @@ error_reporting(0);
                     <td><?= $p['ont'];?></td>
                     <td><?= $p['stb'];?></td>
                     <td><?= $p['layanan'];?></td>
-                    <!-- <td><?= $p['jenis_kabel'];?></td>
+                    <td><?= $p['jenis_kabel'];?></td>
                     <td><?= $p['panjang_kabel'];?></td>
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
                     <td><?= $p['patch_cord'];?></td>
-                    <td><?= $p['patch_cord_add'];?></td>
+                    <!-- <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
                     <td><?= $p['stb_kedua'];?></td>

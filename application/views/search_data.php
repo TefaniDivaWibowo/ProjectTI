@@ -1,4 +1,3 @@
-<!--sidebar-menu-->
 <?php
 error_reporting(0);
 ?>
@@ -13,7 +12,7 @@ error_reporting(0);
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
-        <li class="active"><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-bandcamp"></i> <span>Provisioning Indihome</span> <span class="label label-important">2</span></a>
@@ -45,33 +44,55 @@ error_reporting(0);
         <li><a href="<?= base_url('index.php/Revenue/data_sd')?>"> Data Service Delivery</a></li>
       </ul>
     </li>    
-    <li class=""><a title="" href="<?= base_url('index.php/searchba')?>"><i class="icon icon-search"></i> <span class="text">Cari Berita Acara</span></a></li>
+    <li class="active"><a title="" href="<?= base_url('index.php/searchba')?>"><i class="icon icon-search"></i> <span class="text">Cari Berita Acara</span></a></li>
   </ul>
 </div>
 
 <div id="content">
-  <div id="content-header">
-    <div id="breadcrumb"></div>
-    <h1>Data Assurance</h1>
-  </div>
+<div id="content-header">
+  <div id="breadcrumb"></div>
+  <h1>Pencarian Berita Acara</h1>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+          <form method="post" action="<?php echo base_url()."index.php/searchba/cari_ba";?>" class="formSearch">
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori :</p>
+                </div>
+                <div class="span7">
+                  <select name="kategori" style="width: 100%;">
+                    <option value="nomor_inet" >Nomor Internet</option>
+                    <option value="nomor_telp">Nomor Telepon</option>
+                    <option value="nomor_ont">Serial Number ONT</option>
+                  </select>
+                </div>
+              </div>
 
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span12">
-      <h4>Revenue Assurance Rp <b><?= $rev;?></b></h4>
-      </div>
-    </div>
-  </div>
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Data Pencarian :</p>
+                </div>
+                <div class="span7">
+                  <input type="text" class="span11" style="width: 100%;" placeholder="Ketikkan data untuk pencarian" name="data_cari" required/>
+                </div>
+              </div>
 
-  <div class="container-fluid">
-    <hr>
-    <div class="row-fluid">
-      <div class="span12">
+              <div class="controls form-group">
+              <div class="form-actions">
+              <div class="span7"><p style="text-align: center;">
+              <button type="submit" class="btn btn-success">Kirim</button></p>
+              </div></div></div>
+              </form>
+              <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Tabel Data Pencarian</h5>
+          </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
-                <tr>
-                  <th>ID REV</th>
+                <th>ID REV</th>
                   <th>MDF</th>
                   <th>Nomor Pots</th>
                   <th>Nomor Speedy</th>
@@ -102,7 +123,7 @@ error_reporting(0);
 
                 <?php
                   $no = 0;
-                      foreach($psb as $p){
+                      foreach($cari as $p){
                         $no++;
 
                   ?>
@@ -135,14 +156,15 @@ error_reporting(0);
                   <?php
                   }
                 ?>
-
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
+          </div>
     </div>
   </div>
 </div>
-</body>
-</html>
+</div>
+
+
+
+  

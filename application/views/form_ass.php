@@ -11,7 +11,7 @@ error_reporting(0);
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
-        <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
         <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
@@ -35,14 +35,16 @@ error_reporting(0);
         <li><a href="<?= base_url('index.php/Revenue/data_gamas')?>">Data Gamas & QE</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="<?= base_url('index.php/Revenue/service')?>"><i class="icon icon-briefcase"></i> <span>Service Delivery</span> <span class="label label-important">4</span></a>
+    <li class="submenu"> <a href="<?= base_url('index.php/Revenue/service')?>"><i class="icon icon-briefcase"></i> <span>Service Delivery</span> <span class="label label-important">5</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/pt3')?>"> Prog Optimization PT3</a></li>
         <li><a href="<?= base_url('index.php/Revenue/nodeb')?>"> NODE B</a></li>
         <li><a href="<?= base_url('index.php/Revenue/hem')?>"> HEM</a></li>
         <li><a href="<?= base_url('index.php/Revenue/pt2')?>"> Prog Optimization PT2</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/data_sd')?>"> Data Service Delivery</a></li>
       </ul>
-    </li>
+    </li>    
+    <li class=""><a title="" href="<?= base_url('index.php/searchba')?>"><i class="icon icon-search"></i> <span class="text">Cari Berita Acara</span></a></li>
   </ul>
 </div>
 

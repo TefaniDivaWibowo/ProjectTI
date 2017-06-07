@@ -35,17 +35,20 @@ error_reporting(0);
         <li><a href="<?= base_url('index.php/Revenue/data_gamas')?>">Data Gamas & QE</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="<?= base_url('index.php/Revenue/service')?>"><i class="icon icon-briefcase"></i> <span>Service Delivery</span> <span class="label label-important">4</span></a>
+    <li class="submenu"> <a href="<?= base_url('index.php/Revenue/service')?>"><i class="icon icon-briefcase"></i> <span>Service Delivery</span> <span class="label label-important">5</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/pt3')?>"> Prog Optimization PT3</a></li>
         <li><a href="<?= base_url('index.php/Revenue/nodeb')?>"> NODE B</a></li>
-        <li><a href="<?= base_url('index.php/Revenue/hem')?>"> HEM</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/hem')?>"> HEM</a></li>
         <li><a href="<?= base_url('index.php/Revenue/pt2')?>"> Prog Optimization PT2</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/data_sd')?>"> Data Service Delivery</a></li>
       </ul>
-    </li>
+    </li>    
+    <li class=""><a title="" href="<?= base_url('index.php/searchba')?>"><i class="icon icon-search"></i> <span class="text">Cari Berita Acara</span></a></li>
   </ul>
 </div>
 
+<form action="<?php echo base_url()."index.php/revenue/insert_hem";?>" method="post" enctype="multipart/form-data">
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"></div>
@@ -59,8 +62,6 @@ error_reporting(0);
             <h5>Data Pelanggan</h5>
           </div>
           <div class="widget-content">
-            
-        		<form action="<?php echo base_url()."index.php/revenue/insert_hem";?>" method="post" enctype="multipart/form-data">
            <div class="control-group">
               <label class="control-label">Witel :</label>
               <div class="controls">
@@ -219,11 +220,11 @@ error_reporting(0);
             <div class="form-actions">
               <button type="submit" class="btn btn-success">Kirim</button>
             </div>
-          </form>
         </div>
       </div>
     </div>
   </div>
+  </form>
 </div></div>
 </body>
 </html>

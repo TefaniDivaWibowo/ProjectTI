@@ -16,6 +16,15 @@ class RevModel extends CI_Model{
       return $query->result_array();
     }
 
+    function get_psb(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'psb')
+                    ->get();
+      return $query->row()->total;
+    }
+
     function get_all_ass(){
       $query = $this->db
                     ->select('*')
@@ -23,6 +32,15 @@ class RevModel extends CI_Model{
                     ->where('divisi', 'ggn')
                     ->get();
       return $query->result_array();
+    }
+
+    function get_ass(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'ggn')
+                    ->get();
+      return $query->row()->total;
     }
 
     function get_all_migrasi(){
@@ -34,6 +52,15 @@ class RevModel extends CI_Model{
       return $query->result_array();
     }
 
+    function get_migrasi(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'migrasi')
+                    ->get();
+      return $query->row()->total;
+    }
+
     function get_all_mainis(){
       $query = $this->db
                     ->select('*')
@@ -41,6 +68,15 @@ class RevModel extends CI_Model{
                     ->where('divisi', 'mainis')
                     ->get();
       return $query->result_array();
+    }
+
+    function get_mainis(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'mainis')
+                    ->get();
+      return $query->row()->total;
     }
 
     function get_all_main_access(){
@@ -51,6 +87,15 @@ class RevModel extends CI_Model{
                     ->get();
       return $query->result_array();
     }
+    
+    function get_main_access(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'main_access')
+                    ->get();
+      return $query->row()->total;
+    }    
 
     function get_all_gamas(){
       $query = $this->db
@@ -59,6 +104,15 @@ class RevModel extends CI_Model{
                     ->where('divisi', 'gamas')
                     ->get();
       return $query->result_array();
+    }
+
+    function get_gamas(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'gamas')
+                    ->get();
+      return $query->row()->total;
     }
 
     function get_all_sd(){
@@ -71,6 +125,18 @@ class RevModel extends CI_Model{
                     ->or_where('divisi', 'pt2')
                     ->get();
       return $query->result_array();
+    }
+
+    function get_sd(){
+      $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', 'pt3')
+                    ->or_where('divisi', 'nodeb')
+                    ->or_where('divisi', 'hem')
+                    ->or_where('divisi', 'pt2')
+                    ->get();
+      return $query->row()->total;
     }
 
 	public function Add($data){

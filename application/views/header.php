@@ -19,14 +19,9 @@
 <!--DataTable Horizontal Scroll End-->
 
 <body>
-
-<!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">Aplikasi Project</a></h1>
 </div>
-<!--close-Header-part--> 
-
-<!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
     <!--<li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
