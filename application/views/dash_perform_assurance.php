@@ -7,7 +7,7 @@
     <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open</a></li>
-        <li><a href="form-common.html">Report Open</a></li>
+        <li><a href="<?= base_url('index.php/PerformAssurance/report_open')?>">Report Open</a></li>
       </ul>
     </li>
   </ul>

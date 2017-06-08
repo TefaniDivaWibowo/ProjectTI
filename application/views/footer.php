@@ -36,16 +36,28 @@
 <!--SearchSN end-->
 
 <!--DataTable Horizontal Scroll Start-->
-<!--<script type="text/javascript" href="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" href="//code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <script type="text/javascript" href="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" href="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	    $('#example').DataTable( {
-	        "scrollX": true
-	    } );
-	} );
-</script>-->
+    $('#example').DataTable( {
+        "scrollX": true
+    } );
+  } );
+</script> -->
 <!--DataTable Horizontal Scroll End-->
+
+<!--DataOpen Pagination-->
+<!--<script type="text/javascript" href="//code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--<script type="text/javascript" href="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+<!-- <script type="text/javascript">
+  $(document).ready(function() {
+    $('#myTable').DataTable( {
+        "pagingType": "full_numbers"
+    } );
+  } );
+</script> -->
+<!---->
 
 </body>
 </html>

@@ -10,7 +10,7 @@
     <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open</span> <span class="label label-important">2</span></a>
       <ul>
         <li class="active"><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open</a></li>
-        <li><a href="form-common.html">Report Open</a></li>
+        <li><a href="<?= base_url('index.php/PerformAssurance/report_open')?>">Report Open</a></li>
       </ul>
     </li>
   </ul>
@@ -18,19 +18,38 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"><!--<a href="#" title="Go to Home" class="tip-bottom">--></div>
-    <h1>Performance Assurance</h1>
+    <h1>Data Open Performance Assurance</h1>
   </div>
   <div class="container-fluid">
   <hr>
   <div class="row-fluid">
     <div class="span12">
+      <form method="post" action="" class="formSearch">
+              <!-- <div class="form-group">
+                <label>Serial Number</label>
+                <input style="width: 100%;" type="text" class="Squery" name="sn" placeholder="Masukkan SN">
+              </div> -->
+              <!-- /.form-group -->
+              <div class="form-group">
+                <div class="span6">
+                  <a href="<?= base_url('index.php/PerformAssurance/count_ofw')?>"><button class="btn btn-primary">Import</button></a>
+                  <button class="btn btn-info">Export</button>
+                </div>
+                <div class="span3" align="left">
+                  
+                </div>
+              </div>
+      </form>
+
+      <br>
+      <hr>
+
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
           </div>
-          <!--style="overflow-x:auto;"-->
           <div class="widget-content nopadding">
-            <table  style="overflow-x:auto;" class="table table-bordered data-table">
+            <table class="table table-bordered data-table">
               <thead>
                 <tr>
                   <th>No.</th>
