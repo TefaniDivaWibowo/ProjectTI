@@ -58,6 +58,49 @@
   } );
 </script> -->
 <!---->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart() {
+
+        var result = '<?php echo $chart; ?>';
+        // console.log(result);
+
+        var data = new google.visualization.DataTable(result);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChart2() {
+
+        var result = '<?php echo $chart; ?>';
+        // console.log(result);
+
+        var data = new google.visualization.DataTable(result);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 
 </body>
 </html>

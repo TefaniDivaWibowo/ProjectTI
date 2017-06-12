@@ -31,7 +31,7 @@ div.pager span.active {
     <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open</span> <span class="label label-important">2</span></a>
       <ul>
         <li class=""><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open</a></li>
-        <li class="active"><a href="<?= base_url('index.php/PerformAssurance/report_open')?>">Report Open</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_open')?>">Report Open</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Close</span> <span class="label label-important">2</span></a>
@@ -90,7 +90,7 @@ div.pager span.active {
                 </thead>
                 <thead>
                   <tr>
-                    <th colspan="2">
+                    <th>
                       <div class="controls">
                         <select>
                           <option>Row Labels</option>
@@ -98,43 +98,42 @@ div.pager span.active {
                           <?php
                             for ($i=1; $i < 31; $i++) { 
                           ?>
-                            <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                            <option><?php echo $i;?></option>
                           <?php
                             }
                           ?>
                         </select>
                       </div>
                     </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style="text-align: center;" colspan="2"><input type="submit" name="send" class="btn btn-primary" value="Send "></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="widget-box">
-            <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-              <h5>Total</h5>
-            </div>
-            <div class="widget-content nopadding">
-              <table id="myTable" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>Row Labels</th>
                     <th>Count of Witel</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    
+                    <td>25</td>
+                    <td><?= $Data_by_Date[0]['count']?></td>
+                  </tr>
+                  <tr>
+                    <td>26</td>
+                    <td><?= $Data_by_Date[1]['count']?></td>
+                  </tr>
+                  <tr>
+                    <td>27</td>
+                    <td><?= $Data_by_Date[2]['count']?></td>
+                  </tr>
+                  <tr>
+                    <td>28</td>
+                    <td><?= $Data_by_Date[3]['count']?></td>
+                  </tr>
+                  <tr>
+                    <td>29</td>
+                    <td><?= $Data_by_Date[4]['count']?></td>
+                  </tr>
+                  <tr>
+                    <td>30</td>
+                    <td><?= $Data_by_Date[5]['count']?></td>
                   </tr>
                 </tbody>
-                <tfoot>
-                  <th>Grand Total</th>
-                </tfoot>
               </table>
             </div>
           </div>
@@ -287,15 +286,15 @@ div.pager span.active {
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><?= $Ta_Copper_Date[0]['count'];?></td>
+                    <td><?= $Ta_Copper_Date_Close[0]['count'];?></td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><?= $Ta_Copper_Date[1]['count'];?></td>
+                    <td><?= $Ta_Copper_Date_Close[1]['count'];?></td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><?= $Ta_Copper_Date[2]['count'];?></td>
+                    <td><?= $Ta_Copper_Date_Close[2]['count'];?></td>
                   </tr>
                 </tbody>
               </table>
@@ -320,15 +319,15 @@ div.pager span.active {
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><?= $Ta_Fiber_Date[0]['count'];?></td>
+                    <td><?= $Ta_Fiber_Date_Close[0]['count'];?></td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><?= $Ta_Fiber_Date[1]['count'];?></td>
+                    <td><?= $Ta_Fiber_Date_Close[1]['count'];?></td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><?= $Ta_Fiber_Date[2]['count'];?></td>
+                    <td><?= $Ta_Fiber_Date_Close[2]['count'];?></td>
                   </tr>
                 </tbody>
               </table>
@@ -353,15 +352,15 @@ div.pager span.active {
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><?= $Pa_Copper_Date[0]['count'];?></td>
+                    <td><?= $Pa_Copper_Date_Close[0]['count'];?></td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><?= $Pa_Copper_Date[1]['count'];?></td>
+                    <td><?= $Pa_Copper_Date_Close[1]['count'];?></td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><?= $Pa_Copper_Date[2]['count'];?></td>
+                    <td><?= $Pa_Copper_Date_Close[2]['count'];?></td>
                   </tr>
                 </tbody>
               </table>
@@ -386,15 +385,15 @@ div.pager span.active {
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td><?= $Pa_Fiber_Date[0]['count'];?>
+                    <td><?= $Pa_Fiber_Date_Close[0]['count'];?>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><?= $Pa_Fiber_Date[1]['count'];?>
+                    <td><?= $Pa_Fiber_Date_Close[1]['count'];?>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td><?= $Pa_Fiber_Date[2]['count'];?>
+                    <td><?= $Pa_Fiber_Date_Close[2]['count'];?>
                   </tr>
                 </tbody>
               </table>

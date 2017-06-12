@@ -10,6 +10,12 @@
         <li><a href="<?= base_url('index.php/PerformAssurance/report_open')?>">Report Open</a></li>
       </ul>
     </li>
+    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Close</span> <span class="label label-important">2</span></a>
+      <ul>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/close')?>">Data Close</a></li>
+        <li><a href="<?= base_url('index.php/PerformAssurance/report_close')?>">Report Close</a></li>
+      </ul>
+    </li>
   </ul>
 </div>
 <div id="content">
@@ -26,7 +32,7 @@
             <h5>Real Time chart 1</h5>
           </div>
           <div class="widget-content">
-            <div id="placeholder2"></div>
+            <div id="curve_chart" style="width: auto; height: auto;"></div>
           </div>
         </div>
       </div>
@@ -36,7 +42,7 @@
             <h5>Real Time chart 2</h5>
           </div>
           <div class="widget-content">
-            <div id="placeholder2"></div>
+            <div id="bar_chart" style="width: auto; height: auto;"></div>
           </div>
         </div>
       </div>

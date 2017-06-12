@@ -15,7 +15,7 @@
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Close</span> <span class="label label-important">2</span></a>
       <ul>
-        <li class=""><a href="<?= base_url('index.php/PerformAssurance/close')?>">Data Close</a></li>
+        <li class="active"><a href="<?= base_url('index.php/PerformAssurance/close')?>">Data Close</a></li>
         <li><a href="<?= base_url('index.php/PerformAssurance/report_close')?>">Report Close</a></li>
       </ul>
     </li>
@@ -30,26 +30,6 @@
   <hr>
   <div class="row-fluid">
     <div class="span12">
-      <form method="post" action="" class="formSearch">
-              <!-- <div class="form-group">
-                <label>Serial Number</label>
-                <input style="width: 100%;" type="text" class="Squery" name="sn" placeholder="Masukkan SN">
-              </div> -->
-              <!-- /.form-group -->
-              <div class="form-group">
-                <div class="span6">
-                  <a href="<?= base_url('index.php/PerformAssurance/count_ofw')?>"><button class="btn btn-primary">Import</button></a>
-                  <button class="btn btn-info">Export</button>
-                </div>
-                <div class="span3" align="left">
-                  
-                </div>
-              </div>
-      </form>
-
-      <br>
-      <hr>
-
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
@@ -80,7 +60,7 @@
                   <th>RK Name</th>
                   <th>Induk Gamas</th>
                   <th>Reported Date</th>
-                  <th>TTR Customer</th>
+                  <th>Tanggal Open</th>
                   <th>TTR Nasional</th>
                   <th>TTR Regional</th>
                   <th>TTR Witel</th>
@@ -90,8 +70,11 @@
                   <th>OSM Resolved Code</th>
                   <th>Last Update Ticket</th>
                   <th>Status Date</th>
-                  <th>Closed/Reopen By</th>
-                  <th>Resolved By</th>
+                  <th>Status Time</th>
+                  <th>Tanggal Close</th>
+                  <th>From Tanggal</th>
+                  <th>From Tanggal</th>
+                  <th>From Jam</th>
                   <th>Workzone</th>
                   <th>MITRA/PA</th>
                   <th>Witel</th>
@@ -104,7 +87,7 @@
               <tbody class="isi">
                 <?php
                   $no = 0;
-                      foreach($data_open as $u){
+                      foreach($data_close as $u){
                         $no++;
 
                   ?>
@@ -131,7 +114,7 @@
                     <td><?= $u['rk_name'];?></td>
                     <td><?= $u['induk_gamas'];?></td>
                     <td><?= $u['reported date'];?></td>
-                    <td><?= $u['ttr_customer'];?></td>
+                    <td><?= $u['tgl_open'];?></td>
                     <td><?= $u['ttr_nasional'];?></td>
                     <td><?= $u['ttr_regional'];?></td>
                     <td><?= $u['ttr_witel'];?></td>
@@ -141,14 +124,17 @@
                     <td><?= $u['osm_resolved_code'];?></td>
                     <td><?= $u['last_updated_ticket'];?></td>
                     <td><?= $u['status_date'];?></td>
-                    <td><?= $u['closed_reopen_by'];?></td>
-                    <td><?= $u['resolved_by'];?></td>
+                    <td><?= $u['status_time'];?></td>
+                    <td><?= $u['tgl_close'];?></td>
+                    <td><?= $u['from_tgl'];?></td>
+                    <td><?= $u['from_tanggal'];?></td>
+                    <td><?= $u['from_jam'];?></td>
                     <td><?= $u['workzone'];?></td>
                     <td><?= $u['mitra_pa'];?></td>
                     <td><?= $u['witel'];?></td>
                     <td><?= $u['regional'];?></td>
-                    <td><?= $u['incident_symptom'];?></td>
-                    <td><?= $u['solution_segment'];?></td>
+                    <td><?= $u['incidents_symptom'];?></td>
+                    <td><?= $u['solutions_segment'];?></td>
                     <td><?= $u['actual_solution'];?></td>
                   </tr>
                   <?php
@@ -179,7 +165,7 @@
                   <th>RK Name</th>
                   <th>Induk Gamas</th>
                   <th>Reported Date</th>
-                  <th>TTR Customer</th>
+                  <th>Tanggal Open</th>
                   <th>TTR Nasional</th>
                   <th>TTR Regional</th>
                   <th>TTR Witel</th>
@@ -189,8 +175,11 @@
                   <th>OSM Resolved Code</th>
                   <th>Last Update Ticket</th>
                   <th>Status Date</th>
-                  <th>Closed/Reopen By</th>
-                  <th>Resolved By</th>
+                  <th>Status Time</th>
+                  <th>Tanggal Close</th>
+                  <th>From Tanggal</th>
+                  <th>From Tanggal</th>
+                  <th>From Jam</th>
                   <th>Workzone</th>
                   <th>MITRA/PA</th>
                   <th>Witel</th>
