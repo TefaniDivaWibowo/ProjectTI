@@ -58,49 +58,201 @@
   } );
 </script> -->
 <!---->
+
+<!--Chart-->
+
+<?php
+  /*echo "<pre>";
+  print_r($chart0);
+  echo "<br>";
+  print_r($chart1);
+  echo "<br>";
+  print_r($chart2);
+  echo "<br>";
+  print_r($chart3);
+  echo "<br>";
+  echo "</pre>";*/
+?>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      google.charts.setOnLoadCallback(drawChart2);
 
-      function drawChart() {
+      //CHART WILAYAH
+      /*google.charts.setOnLoadCallback(drawChartTAC);
+      google.charts.setOnLoadCallback(drawChartTAF);
+      google.charts.setOnLoadCallback(drawChartPAC);
+      google.charts.setOnLoadCallback(drawChartPAF);
 
-        var result = '<?php echo $chart; ?>';
+      function drawChartTAC() {
+        var result = '';
         // console.log(result);
-
         var data = new google.visualization.DataTable(result);
-
         var options = {
-          title: 'Company Performance',
+          title: 'OPEN TA COPPER PERHARI',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari'));
+        chart.draw(data, options);
+      }
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+      function drawChartTAF() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'OPEN TA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari'));
+        chart.draw(data, options);
+      }
 
+      function drawChartPAC() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'OPEN TA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari'));
+        chart.draw(data, options);
+      }
+
+      function drawChartPAF() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'OPEN TA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari'));
+        chart.draw(data, options);
+      }*/
+
+      //CHART PERHARI
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+      google.charts.setOnLoadCallback(drawChart4);
+
+      function drawChart() {
+        var result = '<?php echo $chart0; ?>';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'OPEN TA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari'));
         chart.draw(data, options);
       }
 
       function drawChart2() {
-
-        var result = '<?php echo $chart; ?>';
+        var result = '<?php echo $chart1; ?>';
         // console.log(result);
-
         var data = new google.visualization.DataTable(result);
-
         var options = {
-          title: 'Company Performance',
+          title: 'OPEN TA FIBER PERHARI',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
-
-        var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
-
+        var chart = new google.visualization.LineChart(document.getElementById('ta_fiber_hari'));
         chart.draw(data, options);
       }
-    </script>
 
+      function drawChart3() {
+        var result = '<?php echo $chart2; ?>';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'OPEN PA FIBER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('pa_copper_hari'));
+        chart.draw(data, options);
+      }
+
+      function drawChart4() {
+        var result = '<?php echo $chart3; ?>';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'OPEN PA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('pa_fiber_hari'));
+        chart.draw(data, options);
+      }
+
+      //CHART PERHARI
+      /*google.charts.setOnLoadCallback(drawChartC1);
+      google.charts.setOnLoadCallback(drawChartC2);
+      google.charts.setOnLoadCallback(drawChartC3);
+      google.charts.setOnLoadCallback(drawChartC4);
+
+      function drawChartC1() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'CLOSE TA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari_close'));
+        chart.draw(data, options);
+      }
+
+      function drawChartC2() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'CLOSE TA FIBER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('ta_fiber_hari_close'));
+        chart.draw(data, options);
+      }
+
+      function drawChartC3() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'CLOSE PA COPPER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('pa_copper_hari_close'));
+        chart.draw(data, options);
+      }
+
+      function drawChartC4() {
+        var result = '';
+        // console.log(result);
+        var data = new google.visualization.DataTable(result);
+        var options = {
+          title: 'CLOSE PA FIBER PERHARI',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('pa_fiber_hari_close'));
+        chart.draw(data, options);
+      }*/
+    </script>
+<!---->
 
 </body>
 </html>

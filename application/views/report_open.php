@@ -37,7 +37,7 @@ div.pager span.active {
     <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Close</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/PerformAssurance/close')?>">Data Close</a></li>
-        <li class="active"><a href="<?= base_url('index.php/PerformAssurance/report_close')?>">Report Close</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_close')?>">Report Close</a></li>
       </ul>
     </li>
   </ul>
@@ -285,18 +285,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+               <?php
+                  foreach ($Ta_Copper_Date as $row) {
+                    $time   = strtotime($row->ttr_customer);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Ta_Copper_Date[0]['count'];?></td>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Ta_Copper_Date[1]['count'];?></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Ta_Copper_Date[2]['count'];?></td>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -318,18 +318,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Ta_Fiber_Date as $row) {
+                    $time   = strtotime($row->ttr_customer);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Ta_Fiber_Date[0]['count'];?></td>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Ta_Fiber_Date[1]['count'];?></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Ta_Fiber_Date[2]['count'];?></td>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -351,18 +351,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Pa_Copper_Date as $row) {
+                    $time   = strtotime($row->ttr_customer);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Pa_Copper_Date[0]['count'];?></td>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Pa_Copper_Date[1]['count'];?></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Pa_Copper_Date[2]['count'];?></td>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -384,18 +384,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Pa_Fiber_Date as $row) {
+                    $time   = strtotime($row->ttr_customer);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Pa_Fiber_Date[0]['count'];?>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Pa_Fiber_Date[1]['count'];?>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Pa_Fiber_Date[2]['count'];?>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
