@@ -11,8 +11,8 @@ class PerformAssurance extends CI_Controller {
 
     public function index()
 	{
-		//START TA COPPER DATE 
-		$tipe = array(array("1"=>$this->PerformAss->get_ta_copper_date()),array("2"=>$this->PerformAss->get_ta_fiber_date()));
+		//CHARTS OPEN
+		$tipe = array(array("1"=>$this->PerformAss->get_ta_copper_date()),array("2"=>$this->PerformAss->get_ta_fiber_date()),array("3"=>$this->PerformAss->get_pa_copper_date()),array("4"=>$this->PerformAss->get_pa_copper_date()));
 		
 		for($i = 0; $i < count($tipe); $i++){
 			$chart = (object) [];
@@ -26,14 +26,26 @@ class PerformAssurance extends CI_Controller {
 			$chart->rows = $value;
 			$data['chart'.$i] = json_encode($chart);
 		}
-		
+
+		//CHARTS CLOSE
+		$tipe2 = array(array("1"=>$this->PerformAss->get_ta_copper_date_close()),array("2"=>$this->PerformAss->get_ta_fiber_date_close()),array("3"=>$this->PerformAss->get_pa_fiber_date_close()),array("4"=>$this->PerformAss->get_pa_copper_date_close()));
+		for($i = 0; $i < count($tipe2); $i++){
+			$chart2 = (object) [];
+			$chart2->cols = array((object) array("type" => "string"), (object) array("type" => "number"));
+			$chart2->rows = $tipe2[$i][$i+1];
+			$value = [];
+			foreach ($chart2->rows as $row) {
+				$tempValue = (object)array("c"=>array((object)array("v"=>$row->tgl_open),(object)array("v"=>$row->count)));
+				array_push($value, $tempValue);
+			}
+			$chart2->rows = $value;
+			$data['chart2'.$i] = json_encode($chart2);
+		}
+
+		//$data['chart'] = json_encode($chart);
 		/*echo "<pre>";
 		print_r($data);
 		echo "</pre>";*/
-		// echo "<pre>";
-		$data['chart'] = json_encode($chart);
-		// print_r($chart);
-		// echo "</pre>";
 
 		$this->load->view('header');
 		$this->load->view('dash_perform_assurance', $data);
@@ -52,29 +64,29 @@ class PerformAssurance extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function get_pa_copper(){
+      $kota = array("Madiun", "Malang", "Kediri", "Jember", "Pasuruan");
+        /*for ($i = 0; $i < count($kota); $i++){
+          /*$query = $this->db->query("SELECT * FROM data_open WHERE witel LIKE '%" . $kota[$i] . "%' AND mitra_pa != 'TA' AND technology = 'Copper'");
+          $query = $this->db->select('*')
+                    ->from('data_open')
+                    ->where('mitra_pa', 'TA')
+                    ->where('technology','Copper')
+                    ->like('witel', '$kota[$i]')
+                    ->get_compiled_select();
+          $rekap['PA_Copper'.$kota[$i]] = $query->num_rows();
+    	}*/
+
+    	$lihat['halo'] = $this->PerformAss->get_pa_fiber_date_close();
+
+    	echo "<pre>";
+    	print_r($lihat);
+    	echo "</pre>";
+    }
+
 	public function report_open()
 	{
 		//START PA COPPER
-		/*$kota = array("Madiun", "Malang", "Kediri", "Jember", "Pasuruan");
-	      for ($i = 0; $i < count($kota); $i++){
-	        $query = $this->db->select('*')
-	                          ->from("data_open")
-	                          ->like('witel', 'Madiun')
-	                          ->where('mitra_pa !=', 'TA')
-	                          ->where('technology','Copper')
-	                          ->get();
-	        $rekap['PA_Copper'.$kota[$i]] = $query->num_rows();
-	        //return $rekap['Fiber_'.$kota[$i]];
-	      }*/
-
-	    /*echo "<pre>";
-		print_r($rekap);
-		echo "</pre>";*/
-
-		//$rekap['PA_Copper'] = $this->PerformAss->get_pa_copper();
-
-		/*$this->db->query("SELECT * FROM data_open WHERE witel LIKE '%$kota[$i]%' AND mitra_pa != 'TA' AND 	technology = 'Copper'");*/
-
 		//PA Copper Madiun
 		$query = $this->db->query("SELECT * FROM data_open WHERE witel LIKE '%MADIUN%' AND mitra_pa != 'TA' AND technology = 'Copper'");
 		$data['Copper_Madiun'] = $query->num_rows();
@@ -94,10 +106,9 @@ class PerformAssurance extends CI_Controller {
 		//PA Copper Pasuruan
 		$query = $this->db->query("SELECT * FROM data_open WHERE witel LIKE '%PASURUAN%' AND mitra_pa != 'TA' AND technology = 'Copper'");
 		$data['Copper_Pasuruan'] = $query->num_rows();		
-
 		//END PA COPPER
-		//START PA FO
 
+		//START PA FO
 		//PA FO Madiun
 		$query = $this->db->query("SELECT * FROM data_open WHERE witel LIKE '%MADIUN%' AND mitra_pa != 'TA' AND technology = 'Fiber'");
 		$data['Fiber_Madiun'] = $query->num_rows();
@@ -179,7 +190,7 @@ class PerformAssurance extends CI_Controller {
 		//END 
 
 		/*echo "<pre>";
-		print_r($rekap);
+		print_r($data);
 		echo "</pre>";*/
 
 		$this->load->view('header');
@@ -206,12 +217,24 @@ class PerformAssurance extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function get_data_row(){
+		$mitra_pa 	= $this->input->post('mitra_pa');
+		$tech		= $this->input->post('tech');
+		$row		= $this->input->post('row');
+
+		if ($mitra_pa == "all" && $tech == "all" && $row = "all") {
+			//ALL DATA DATE 
+			$data['Data_by_Date'] = $this->PerformAss->get_all_data_date();
+			//END
+
+			$this->load->view('header');
+			$this->load->view('report_close', $data);
+			$this->load->view('footer');
+		}
+	}
+
 	public function report_close()
 	{
-		//START TA COPPER DATE 
-		$data['Data_by_Date'] = $this->PerformAss->get_all_data_date();
-		//END
-
 		//START PA COPPER
 
 		//PA Copper Madiun
@@ -320,6 +343,9 @@ class PerformAssurance extends CI_Controller {
 		/*echo "<pre>";
 		print_r($rekap);
 		echo "<pre>";*/
+
+		/*$rekap['Ta_Copper_Date_Close'] = $this->PerformAss->get_ta_copper_date_close();
+		$this->load->view('try_something', $rekap);*/
 
 		$this->load->view('header');
 		$this->load->view('report_close', $data);

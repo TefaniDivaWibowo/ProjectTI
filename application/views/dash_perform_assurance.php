@@ -25,24 +25,60 @@
   </div>
   <div class="container-fluid">
     <hr>
-    <div class="row-fluid">
+
+      <ul >
+        <li class="btn btn-large"> <a href="#open">Open</a> </li>
+        <li class="btn btn-large"> <a href="calendar.html">Close</a> </li>
+        <li class="btn btn-large"> <a href="error404.html">Gaul</a> </li>
+      </ul>
+
+    <hr>
+
+  <div id="open">
+    <!-- <div class="row-fluid">
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>Real Time chart 1</h5>
-          </div>
           <div class="widget-content">
-            <div id="curve_chart" style="width: auto; height: auto;"></div>
+            <div id="ta_copper" style="width: auto; height: auto;"></div>
           </div>
         </div>
       </div>
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>Real Time chart 2</h5>
-          </div>
           <div class="widget-content">
-            <div id="bar_chart" style="width: auto; height: auto;"></div>
+            <div id="ta_fiber" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_copper" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_fiber" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_copper_hari" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_fiber_hari" style="width: auto; height: auto;"></div>
           </div>
         </div>
       </div>
@@ -50,25 +86,89 @@
     <div class="row-fluid">
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>Line chart</h5>
-          </div>
           <div class="widget-content">
-            <div class="bars"></div>
+            <div id="pa_copper_hari" style="width: auto; height: auto;"></div>
           </div>
         </div>
       </div>
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
-            <h5>Line chart</h5>
-          </div>
           <div class="widget-content">
-            <div class="bars"></div>
+            <div id="pa_fiber_hari" style="width: auto; height: auto;"></div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <hr>
+
+  <div id="close">
+    <!-- <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_copper_c" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_fiber_c" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_copper_c" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_fiber_c" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_copper_hari_close" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="ta_fiber_hari_close" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="pa_copper_hari_close" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div id="pa_fiber_hari_close" style="width: auto; height: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 

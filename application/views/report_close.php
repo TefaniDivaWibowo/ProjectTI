@@ -45,7 +45,7 @@ div.pager span.active {
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"><!--<a href="#" title="Go to Home" class="tip-bottom">--></div>
-    <h1>Report Open Performace Assurance</h1>
+    <h1>Report Close Performace Assurance</h1>
   </div>
   <div class="container-fluid">
   <hr>
@@ -57,6 +57,8 @@ div.pager span.active {
               <h5>Total</h5>
             </div>
             <div class="widget-content nopadding">
+
+            <form action="<?= base_url('index.php/PerformAssurance/get_data_row')?>" method="post">
               <table id="myTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -64,10 +66,10 @@ div.pager span.active {
                       MITRA/PA&nbsp;
                     </th>
                     <th>
-                      <select>
-                        <option>All</option>
-                        <option>TA</option>
-                        <option>PA</option>
+                      <select name="mitra_pa">
+                        <option value="all">All</option>
+                        <option value="ta">TA</option>
+                        <option value="pa">PA</option>
                       </select>
                     </th>
                   </tr>
@@ -79,10 +81,10 @@ div.pager span.active {
                     </th>
                     <th>
                       <div class="controls">
-                        <select>
-                          <option>All</option>
-                          <option>Copper</option>
-                          <option>Fiber</option>
+                        <select name="tech">
+                          <option value="all">All</option>
+                          <option value="copper">Copper</option>
+                          <option value="fiber">Fiber</option>
                         </select>
                       </div>
                     </th>
@@ -90,50 +92,52 @@ div.pager span.active {
                 </thead>
                 <thead>
                   <tr>
-                    <th>
+                    <th colspan="2">
                       <div class="controls">
-                        <select>
-                          <option>Row Labels</option>
-                          <option>Select All</option>
+                        <select name="row">
+                          <option>Date</option>
+                          <option value="all">All Date</option>
                           <?php
                             for ($i=1; $i < 31; $i++) { 
                           ?>
-                            <option><?php echo $i;?></option>
+                            <option value="<?php echo $i;?>"><?php echo $i;?></option>
                           <?php
                             }
                           ?>
                         </select>
                       </div>
                     </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center;" colspan="2"><input type="submit" name="send" class="btn btn-primary btn-mini" value="Send "></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+            </div>
+          </div>
+          <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+              <h5>Total</h5>
+            </div>
+            <div class="widget-content nopadding">
+              <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Row Labels</th>
                     <th>Count of Witel</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>25</td>
-                    <td><?= $Data_by_Date[0]['count']?></td>
-                  </tr>
-                  <tr>
-                    <td>26</td>
-                    <td><?= $Data_by_Date[1]['count']?></td>
-                  </tr>
-                  <tr>
-                    <td>27</td>
-                    <td><?= $Data_by_Date[2]['count']?></td>
-                  </tr>
-                  <tr>
-                    <td>28</td>
-                    <td><?= $Data_by_Date[3]['count']?></td>
-                  </tr>
-                  <tr>
-                    <td>29</td>
-                    <td><?= $Data_by_Date[4]['count']?></td>
-                  </tr>
-                  <tr>
-                    <td>30</td>
-                    <td><?= $Data_by_Date[5]['count']?></td>
+                    
                   </tr>
                 </tbody>
+                <tfoot>
+                  <th>Grand Total</th>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -284,18 +288,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Ta_Copper_Date_Close as $row) {
+                    $time   = strtotime($row->tgl_open);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Ta_Copper_Date_Close[0]['count'];?></td>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Ta_Copper_Date_Close[1]['count'];?></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Ta_Copper_Date_Close[2]['count'];?></td>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -317,18 +321,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Ta_Fiber_Date_Close as $row) {
+                    $time   = strtotime($row->tgl_open);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Ta_Fiber_Date_Close[0]['count'];?></td>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Ta_Fiber_Date_Close[1]['count'];?></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Ta_Fiber_Date_Close[2]['count'];?></td>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -350,18 +354,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Pa_Copper_Date_Close as $row) {
+                    $time   = strtotime($row->tgl_open);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Pa_Copper_Date_Close[0]['count'];?></td>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Pa_Copper_Date_Close[1]['count'];?></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Pa_Copper_Date_Close[2]['count'];?></td>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -383,18 +387,18 @@ div.pager span.active {
                   </tr>
                 </thead>
                 <tbody>
+                <?php
+                  foreach ($Pa_Fiber_Date_Close as $row) {
+                    $time   = strtotime($row->tgl_open);
+                    $tgl  = date("d", $time);
+                ?>
                   <tr>
-                    <td>1</td>
-                    <td><?= $Pa_Fiber_Date_Close[0]['count'];?>
+                    <td><?= $tgl;?></td>
+                  <td><?= $row->count;?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><?= $Pa_Fiber_Date_Close[1]['count'];?>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><?= $Pa_Fiber_Date_Close[2]['count'];?>
-                  </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
