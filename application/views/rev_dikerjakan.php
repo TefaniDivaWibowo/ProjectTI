@@ -1,5 +1,3 @@
-<!--sidebar-menu-->
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/DataTabel.css" />
 <?php
 error_reporting(0);
 ?>
@@ -8,13 +6,13 @@ error_reporting(0);
     <li class="submenu"> <a href=""><i class="icon icon-truck"></i> <span>Infrastructure Delivery</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/migrasi')?>">Form Migration</a></li>
-        <li class="active"><a href="<?= base_url('index.php/Revenue/data_migrasi')?>">Data Migration</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/data_migrasi')?>">Data Migration</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
-        <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-bandcamp"></i> <span>Provisioning Indihome</span> <span class="label label-important">2</span></a>
@@ -54,13 +52,13 @@ error_reporting(0);
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"></div>
-    <h1>Data Migration</h1>
+    <h1>Pencarian Data</h1>
   </div>
 
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-      <h4>Revenue Migrasi Rp <b><?= $rev;?></b></h4>
+      <h4>Revenue Rp <b><?= $rev;?></b></h4>
       </div>
     </div>
   </div>
@@ -69,10 +67,64 @@ error_reporting(0);
     <hr>
     <div class="row-fluid">
       <div class="span12">
-          <div class="widget-content nopadding"  style="overflow-x:auto;">
+      <form method="post" action="<?php echo base_url()."index.php/RevRekon/cari_dikerjakan";?>" class="formSearch">
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori BA:</p>
+                </div>
+                <div class="span7">
+                  <select name="kategori" style="width: 100%;">
+                    <option value="semua_ba" >Semua BA</option>
+                    <option value="psb">Provisioning Indihome</option>
+                    <option value="ggn">Assurance</option>
+                    <option value="migrasi">Migration</option>
+                    <option value="mainis">Maintenance Infra Support</option>
+                    <option value="main_access">Maintenance Access</option>
+                    <option value="gamas">Gamas & QE</option>
+                    <option value="pt3">Prog Optimization PT3</option>
+                    <option value="nodeb">NODE B</option>
+                    <option value="hem">HEM</option> 
+                    <option value="pt2">Prog Optimization PT2</option>
+                  </select>
+                </div>
+              </div>    
+
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori Area:</p>
+                </div>
+                <div class="span7">
+                  <select name="area" style="width: 100%;">
+                    <option value="semua_ba">Semua Area</option>
+                    <option value="malang">Malang</option>
+                    <option value="madiun">Madiun</option>
+                    <option value="pasuruan">Pasuruan</option>
+                    <option value="kediri">Kediri</option>
+                    <option value="jember">Jember</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Nomor Internet :</p>
+                </div>
+                <div class="span8">                  
+                  <input type="text" class="span11" placeholder="Ketikkan beberapa nomor internet" name="no_inet" required/>
+                </div>
+              </div>
+
+              <div class="controls form-group">
+              <div class="form-actions">
+              <div class="span7"><p style="text-align: center;">
+              <button type="submit" class="btn btn-success">Cari</button></p>
+              </div></div></div>
+              </form>
+          <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
+                  <th>Rekon</th>
                   <th>ID REV</th>
                   <th>MDF</th>
                   <th>Nomor Pots</th>
@@ -83,12 +135,12 @@ error_reporting(0);
                   <th>ONT</th>
                   <th>STB</th>
                   <th>Layanan</th>
-                  <th>Jenis Kabel</th>
+                  <!-- <th>Jenis Kabel</th>
                   <th>Panjang Kabel</th>
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
                   <th>Patch Cord</th>
-                  <!-- <th>Patch Cord Tambahan</th>
+                  <th>Patch Cord Tambahan</th>
                   <th>Kabel UTP</th>
                   <th>Kabel UTP Tambahan</th>
                   <th>Kabel PVC</th>
@@ -101,7 +153,6 @@ error_reporting(0);
                 </tr>
               </thead>
               <tbody>
-
                 <?php
                   $no = 0;
                       foreach($psb as $p){
@@ -109,6 +160,7 @@ error_reporting(0);
 
                   ?>
                   <tr>
+                    <td><a href=""><button class="btn btn-mini">Rekon</button></a></td>
                     <td><?= $p['id_rev'];?></td>
                     <td><?= $p['mdf'];?></td>
                     <td><?= $p['nomor_pots'];?></td>
@@ -119,12 +171,12 @@ error_reporting(0);
                     <td><?= $p['ont'];?></td>
                     <td><?= $p['stb'];?></td>
                     <td><?= $p['layanan'];?></td>
-                    <td><?= $p['jenis_kabel'];?></td>
+                    <!-- <td><?= $p['jenis_kabel'];?></td>
                     <td><?= $p['panjang_kabel'];?></td>
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
                     <td><?= $p['patch_cord'];?></td>
-                    <!-- <td><?= $p['patch_cord_add'];?></td>
+                    <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
                     <td><?= $p['stb_kedua'];?></td>
@@ -137,7 +189,6 @@ error_reporting(0);
                   <?php
                   }
                 ?>
-
               </tbody>
             </table>
           </div>

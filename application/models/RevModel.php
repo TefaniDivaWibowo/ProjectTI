@@ -5,7 +5,16 @@ class RevModel extends CI_Model{
 
 	function __construct(){
 		$this->load->database();
-	}
+	} 
+
+    function get_all(){
+      $query = $this->db
+                    ->select('*')
+                    ->from('data_psb')
+                    ->where('rekon', NULL)
+                    ->get();
+      return $query->result_array();
+    }
 
     function get_all_psb(){
       $query = $this->db
@@ -159,6 +168,73 @@ class RevModel extends CI_Model{
     return $res->result_array();
 
     }
+
+    function get_dt_psb(){
+      $query  = $this->db->query("SELECT tgl_ps, SUM(biaya) AS harga FROM data_psb WHERE divisi = 'psb' GROUP BY tgl_ps ORDER BY tgl_ps");
+      return $query->result();
+    }
+
+    public function add_target($data){
+        $res = $this->db->insert('data_target_rev', $data);
+        return $res;
+    }
+
+    public function get_target($kt){
+        $res = $this->db
+                    ->select('nominal')                    
+                    ->from('data_target_rev')
+                    ->where('divisi', $kt)
+                    ->get();
+      return $res->row()->nominal;
+    }
+
+    public function get_kerja($kt, $ka, $ni){
+        if($kt == 'semua_ba' && $ka == 'semua_ba'){
+          $res  = $this->db->query("SELECT * FROM data_psb WHERE nomor_speedy IN (". $ni.")");
+        }elseif ($kt == 'semua_ba') {
+          $res = $this->db
+                    ->select('*')                    
+                    ->from('data_psb')
+                    ->where('wilayah', $ka)
+                    ->where('nomor_speedy', $ni)
+                    ->get();
+        }elseif ($ka == 'semua_ba') {
+          $res = $this->db
+                    ->select('*')                    
+                    ->from('data_psb')
+                    ->where('divisi', $kt)
+                    ->where('nomor_speedy', $ni)
+                    ->get();
+        }else{
+          $res = $this->db
+                    ->select('*')                    
+                    ->from('data_psb')
+                    ->where('divisi', $kt)
+                    ->where('wilayah', $ka)
+                    ->where('nomor_speedy', $ni)
+                    ->get();
+        }
+      return $res->result_array();
+    }
+
+    function get_search($kt, $ka, $tgl1, $bln1, $thn1, $tgl2, $bln2, $thn2){
+    $dt1 = $thn1.'-'.$bln1.'-'.$tgl1;
+    $dt2 = $thn2.'-'.$bln2.'-'.$tgl2;
+    if($kt == "semua_ba" && $ka == "semua_ba" ){
+        $cari  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE (tgl_va BETWEEN '". $dt1 ."' AND '". $dt2 ."');");
+      } elseif ($kt == "semua_ba"){
+        $cari  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE wilayah = '". $ka ."' AND (tgl_va BETWEEN '". $dt1 ."' AND '". $dt2 ."');");
+      } elseif ($ka == "semua_ba"){
+        $cari  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE divisi = '". $kt ."' AND (tgl_va BETWEEN '". $dt1 ."' AND '". $dt2 ."');");
+      } else {
+        $cari  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE wilayah = '". $ka ."' AND divisi = '". $kt ."' AND (tgl_va BETWEEN '". $dt1 ."' AND '". $dt2 ."');");
+      }
+      return $cari->result_array();
+  }
 
 }
 ?>

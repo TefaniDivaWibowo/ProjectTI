@@ -8,21 +8,39 @@ class Revenue extends CI_Controller {
       $this->load->database();
       $this->load->helper('url');
       $this->load->model('RevModel');
+      // $this->load->model('PerformAss');
     }
 
 	public function index(){
+		$tipe = array(array("1"=>$this->RevModel->get_dt_psb()));
+		
+		for($i = 0; $i < count($tipe); $i++){
+			$chart = (object) [];
+			$chart->cols = array((object) array("type" => "string"), (object) array("type" => "number"));
+			$chart->rows = $tipe[$i][$i+1];
+			$value = [];
+			foreach ($chart->rows as $row) {
+				$tempValue = (object)array("c"=>array((object)array("v"=>$row->tgl_ps),(object)array("v"=>$row->harga)));
+				array_push($value, $tempValue);
+			}
+			$chart->rows = $value;
+			$data['chart'.$i] = json_encode($chart);
+		}
+		 
+		/*echo "<pre>";
+		print_r($data);
+		echo "</pre>";*/
+		// echo "<pre>";
+		$data['chart'] = json_encode($chart);
+		// print_r($chart);
+		// echo "</pre>";
 		$this->load->view('header');
-		$this->load->view('home_rev');
-		$this->load->view('footer');
+		$this->load->view('home_rev', $data);
+		$this->load->view('footer', $data);
 	}
 
+	// Coba-coba desain saja
 	public function coba_desain(){
-		$this->load->view('header');
-		$this->load->view('desain');
-		$this->load->view('footer');
-	}
-
-	public function coba_desain2(){
 		$this->load->view('header');
 		$this->load->view('desain');
 		$this->load->view('footer');
@@ -37,6 +55,9 @@ class Revenue extends CI_Controller {
 	public function data_psb(){
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all_psb();
+		/*echo "<pre>";
+		print_r($data);
+		echo "</pre>";*/
 		$data['rev'] = $this->RevModel->get_psb();
 		$this->load->view('table_psb', $data);
 		$this->load->view('footer');
@@ -110,11 +131,6 @@ class Revenue extends CI_Controller {
 		$data['rev'] = $this->RevModel->get_gamas();
 		$this->load->view('table_gamas', $data);
 		$this->load->view('footer');
-	}
-
-	public function cari(){		
-		$data['psb'] = $this->RevModel->get_all();
-		$this->load->view('cari_ba', $data);
 	}
 
 	public function pt3(){
@@ -210,7 +226,7 @@ class Revenue extends CI_Controller {
 				$inti = $_FILES['ba_psb']['name'];
 				
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -317,7 +333,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -424,7 +440,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -531,7 +547,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -638,7 +654,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -745,7 +761,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -852,7 +868,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -959,7 +975,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -1066,7 +1082,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  
@@ -1173,7 +1189,7 @@ class Revenue extends CI_Controller {
 
 				$inti = $_FILES['ba_psb']['name'];
         		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
                 $this->load->library('upload', $config);
  

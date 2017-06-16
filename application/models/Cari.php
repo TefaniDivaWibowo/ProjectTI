@@ -33,5 +33,86 @@
       return $ba->result_array();
   }
 
+  function get_search_lama($kt, $tgl, $bln, $thn){
+    $dt = $thn.'-'.$bln.'-'.$tgl;
+    if($kt == "tgl_va"){
+        $cari  = $this->db
+                ->select('*')
+                ->from('data_psb')
+                ->where('tgl_va', $dt)
+                ->get();
+      } else{
+        $cari  = $this->db
+                ->select('*')
+                ->from('data_psb')
+                ->where('tgl_ps', $dt)
+                ->get();  
+    }        
+      return $cari->result_array();
+  }
+
+  function get_search($kt, $tgl1, $bln1, $thn1, $tgl2, $bln2, $thn2){
+    $dt1 = $thn1.'-'.$bln1.'-'.$tgl1;
+    $dt2 = $thn2.'-'.$bln2.'-'.$tgl2;
+    if($kt == "tgl_va"){
+        $cari  = $this->db->query("SELECT * FROM data_psb WHERE (tgl_va BETWEEN '". $dt1 ."' AND '". $dt2 ."');");
+      } else{
+        $cari  = $cari  = $this->db->query("SELECT * FROM data_psb WHERE (tgl_ps BETWEEN '". $dt1 ."' AND '". $dt2 ."');");
+    }
+      return $cari->result_array();
+  }
+
+  function get_dt_rekon($kt, $ka){
+    if($kt == "semua_ba" && $ka == "semua_ba"){
+        $cari  = $this->db
+                ->select('*')
+                ->from('data_psb')
+                ->get();
+      } else if($kt == "semua_ba"){
+        $cari  = $this->db
+                ->select('*')
+                ->from('data_psb')
+                ->where('wilayah', $ka)
+                ->get();
+      } else if($ka == "semua_ba"){
+        $cari  = $this->db
+                ->select('*')
+                ->from('data_psb')
+                ->where('divisi', $kt)
+                ->get();
+      } else{
+        $cari  = $this->db
+                ->select('*')
+                ->from('data_psb')
+                ->where('divisi', $kt)
+                ->where('wilayah', $ka)
+                ->get();  
+    }        
+      return $cari->result_array();
+  }
+
+  function get_revenue($kt, $ka){
+    if($kt == "semua_ba" && $ka == "semua_ba"){
+        $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->get();
+      } else if($kt == "semua_ba"){
+        $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('wilayah', $ka)
+                    ->get();
+      } else{
+        $query = $this->db
+                    ->select('SUM(biaya) as total')
+                    ->from('data_psb')
+                    ->where('divisi', $kt)
+                    ->where('wilayah', $ka)
+                    ->get();  
+    }    
+      return $query->row()->total;
+    }
+
 }
 ?>

@@ -1,4 +1,3 @@
-<!--sidebar-menu-->
 <?php
 error_reporting(0);
 ?>
@@ -12,8 +11,8 @@ error_reporting(0);
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
-        <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
-        <li class="active"><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-bandcamp"></i> <span>Provisioning Indihome</span> <span class="label label-important">2</span></a>
@@ -49,101 +48,49 @@ error_reporting(0);
     <li class=""><a title="" href="<?= base_url('index.php/searchba/cari_data')?>"><i class="icon icon-search"></i> <span class="text">Cari Berdasarkan Tanggal</span></a></li>
   </ul>
 </div>
-
 <div id="content">
-  <div id="content-header">
-    <div id="breadcrumb"></div>
-    <h1>Data Assurance</h1>
-  </div>
-
-  <div class="container-fluid">
+<div id="content-header">
+  <div id="breadcrumb"></div>
+  <h1>Form Update Target Revenue Maintenance Infrastructure Support</h1>
+</div>
+  
+    <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-      <h4>Revenue Assurance Rp <b><?= $rev;?></b></h4>
+      <h4>Target Revenue Maintenance Infrastructure Support IDR <b><?= $rev;?></b> M</h4>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid">
-    <hr>
+<div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-          <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>ID REV</th>
-                  <th>MDF</th>
-                  <th>Nomor Pots</th>
-                  <th>Nomor Speedy</th>
-                  <th>Nama Pelanggan</th>
-                  <th>Alamat</th>
-                  <th>ODP</th>
-                  <th>ONT</th>
-                  <th>STB</th>
-                  <th>Layanan</th>
-                  <!-- <th>Jenis Kabel</th>
-                  <th>Panjang Kabel</th>
-                  <th>Kelebihan Kabel</th>
-                  <th>Tiang</th>
-                  <th>Patch Cord</th>
-                  <th>Patch Cord Tambahan</th>
-                  <th>Kabel UTP</th>
-                  <th>Kabel UTP Tambahan</th>
-                  <th>Kabel PVC</th>
-                  <th>STB Tambahan</th>
-                  <th>Tanggal VA</th>
-                  <th>Tanggal PS</th> -->
-                  <th>Hasil Cek Redaman</th>
-                  <th>Biaya</th>
-                  <th>Bukti BA</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <?php
-                  $no = 0;
-                      foreach($psb as $p){
-                        $no++;
-
-                  ?>
-                  <tr>
-                    <td><?= $p['id_rev'];?></td>
-                    <td><?= $p['mdf'];?></td>
-                    <td><?= $p['nomor_pots'];?></td>
-                    <td><?= $p['nomor_speedy'];?></td>
-                    <td><?= $p['nama'];?></td>
-                    <td><?= $p['alamat'];?></td>
-                    <td><?= $p['odp'];?></td>
-                    <td><?= $p['ont'];?></td>
-                    <td><?= $p['stb'];?></td>
-                    <td><?= $p['layanan'];?></td>
-                    <!-- <td><?= $p['jenis_kabel'];?></td>
-                    <td><?= $p['panjang_kabel'];?></td>
-                    <td><?= $p['kelebihan_kabel'];?></td>
-                    <td><?= $p['tiang'];?></td>
-                    <td><?= $p['patch_cord'];?></td>
-                    <td><?= $p['patch_cord_add'];?></td>
-                    <td><?= $p['kabel_utp'];?></td>
-                    <td><?= $p['kabel_utp_add'];?></td>
-                    <td><?= $p['stb_kedua'];?></td>
-                    <td><?= $p['tgl_va'];?></td>
-                    <td><?= $p['tgl_ps'];?></td> -->
-                    <td><?= $p['hasil_cek_redaman'];?></td>
-                    <td><?= $p['biaya'];?></td>
-                    <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>
-                  </tr>
-                  <?php
-                  }
-                ?>
-
-              </tbody>
-            </table>
+      <form action="<?php echo base_url()."index.php/revtarget/tambah_target_mis";?>" method="post">
+        <div class="widget-box">
+          <div class="widget-title">
+            <h5>Input Data Revenue</h5>
+          </div>
+          <div class="widget-content">           
+            <div class="control-group">
+              <label class="control-label">Target Revenue :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Ketikkan jumlah target revenue assurance dalam satuan juta" name="target" required/>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Update</button>
+            </div>
           </div>
         </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="row-fluid">
+    <div class="span12">
       </div>
     </div>
   </div>
-</div>
+</div></div>
 </body>
 </html>

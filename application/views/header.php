@@ -12,6 +12,25 @@
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/matrix-media.css" />
 <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+<style>
+  label input[type="checkbox"] {
+  position: fixed;
+  z-index: -10;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  }
+
+  .custom-checkbox input[type="checkbox"] {
+  position: fixed;
+  z-index: -10;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  }
+</style>
+
 </head>
 
 <!--DataTable Horizontal Scroll Start-->
@@ -39,9 +58,12 @@
         <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
       </ul>
     </li>-->
-    <li class=""><a title="" href="<?= base_url('index.php/SearchSN/');?>"><i class="icon icon-search"></i> <span class="text">&nbsp;Search Serial Number</span></a></li>
-    <li class=""><a title="" href="<?= base_url('index.php/Revenue/');?>"><i class="icon icon-money"></i> <span class="text">&nbsp;Open Revenue All</span></a></li> 
-    <li class=""><a title="" href="<?= base_url('index.php/PerformAssurance/');?>"><i class="icon icon-wrench"></i> <span class="text">&nbsp;Open Performance Assurance</span></a></li>
+    <li class=""><a title="" href="<?= base_url('index.php/SearchSN/');?>"><i class="icon icon-search"></i> <span class="text">&nbsp;Search NTE</span></a></li>
+    <li class=""><a title="" href="<?= base_url('index.php/Revenue/');?>"><i class="icon icon-money"></i> <span class="text">&nbsp;Revenue</span></a></li> 
+    <li class=""><a title="" href="<?= base_url('index.php/PerformAssurance/');?>"><i class="icon icon-wrench"></i> <span class="text">&nbsp;Assurance Performance</span></a></li>
+    <li class=""><a title="" href="<?= base_url();?>"><i class="icon icon-cog"></i> <span class="text">&nbsp;Provisioning Performance</span></a></li>
+    <li class=""><a title="" href="<?= base_url();?>"><i class="icon icon-wrench"></i> <span class="text">&nbsp;COGS</span></a></li>
+    <li class=""><a title="" href="#"><i class="icon icon-play"></i> <span class="text">&nbsp;Slide Show</span></a></li>
   </ul>
 </div>
 
