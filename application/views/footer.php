@@ -1,4 +1,3 @@
-<!--Footer-part-->
 <div class="row-fluid">
   <div id="footer" class="span12"> 2017 &copy; PT Telkom Akses <a href="http://themedesigner.in">Malang</a> </div>
 </div>
@@ -31,6 +30,8 @@
   $('.FormSearch').submit(function(e){
     e.preventDefault();
   });
+
+  $( “c1” ).triggerHandler( “click” );
 </script>
 
 <!--SearchSN end-->
@@ -77,6 +78,12 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
+<<<<<<< HEAD
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChartRev1);
+=======
+>>>>>>> 36255c692b54668953b5c4eeb5fd31b578ae621c
 
       //CHART WILAYAH
       /*google.charts.setOnLoadCallback(drawChartTAC);
@@ -152,6 +159,24 @@
           legend: { position: 'bottom' }
         };
         var chart = new google.visualization.LineChart(document.getElementById('ta_copper_hari'));
+        chart.draw(data, options);
+      }
+
+      function drawChartRev1() {
+
+        var result = '<?php echo $chart; ?>';
+        // console.log(result);
+
+        var data = new google.visualization.DataTable(result);
+
+        var options = {
+          title: 'Provisioning Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_rev1'));
+
         chart.draw(data, options);
       }
 

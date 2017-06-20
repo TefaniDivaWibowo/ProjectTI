@@ -57,7 +57,7 @@ error_reporting(0);
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
-          <form method="post" action="<?php echo base_url()."index.php/searchba/cari_hasil";?>" class="formSearch">
+          <form method="post" action="<?php echo base_url()."index.php/RevRekon/cari_hasil";?>" class="formSearch">
           <div class="form-actions">
           <?php
               $namaBulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",  "September", "Oktober",  "November", "Desember");
@@ -67,15 +67,40 @@ error_reporting(0);
           ?>
             <div class="controls form-group">
                 <div class="span3">
-                  <p style="text-align: center;">Pilih Kategori :</p>
+                  <p style="text-align: center;">Pilih Kategori BA:</p>
                 </div>
                 <div class="span7">
                   <select name="kategori" style="width: 100%;">
-                    <option value="tgl_va" >Tanggal VA</option>
-                    <option value="tgl_ps">Tanggal PS</option>
+                    <option value="semua_ba" >Semua BA</option>
+                    <option value="psb">Provisioning Indihome</option>
+                    <option value="ggn">Assurance</option>
+                    <option value="migrasi">Migration</option>
+                    <option value="mainis">Maintenance Infra Support</option>
+                    <option value="main_access">Maintenance Access</option>
+                    <option value="gamas">Gamas & QE</option>
+                    <option value="pt3">Prog Optimization PT3</option>
+                    <option value="nodeb">NODE B</option>
+                    <option value="hem">HEM</option> 
+                    <option value="pt2">Prog Optimization PT2</option>
                   </select>
                 </div>
-            </div>
+              </div>    
+
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori Area:</p>
+                </div>
+                <div class="span7">
+                  <select name="area" style="width: 100%;">
+                    <option value="semua_ba">Semua Area</option>
+                    <option value="malang">Malang</option>
+                    <option value="madiun">Madiun</option>
+                    <option value="pasuruan">Pasuruan</option>
+                    <option value="kediri">Kediri</option>
+                    <option value="jember">Jember</option>
+                  </select>
+                </div>
+              </div>
  
             <div class="controls form-group">
                 <div class="span3">

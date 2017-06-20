@@ -23,7 +23,6 @@ class Welcome extends CI_Controller {
 	{
 		parent::Controller();
 	}*/
-
 	public function index()
 	{
 		$this->load->view('header');

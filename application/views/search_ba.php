@@ -45,6 +45,7 @@ error_reporting(0);
       </ul>
     </li>    
     <li class="active"><a title="" href="<?= base_url('index.php/searchba')?>"><i class="icon icon-search"></i> <span class="text">Cari Berita Acara</span></a></li>
+    <li class=""><a title="" href="<?= base_url('index.php/searchba/cari_data')?>"><i class="icon icon-search"></i> <span class="text">Cari Berdasarkan Tanggal</span></a></li>
   </ul>
 </div>
 
@@ -82,7 +83,7 @@ error_reporting(0);
               <div class="controls form-group">
               <div class="form-actions">
               <div class="span7"><p style="text-align: center;">
-              <button type="submit" class="btn btn-success">Kirim</button></p>
+              <button type="submit" class="btn btn-success">Cari</button></p>
               </div></div></div>
               </form>
               <div class="widget-box">
