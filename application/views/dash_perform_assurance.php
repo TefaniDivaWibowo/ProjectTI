@@ -4,16 +4,20 @@
   <ul>
     <li class="active"><a href="<?= base_url('index.php/PerformAssurance')?>"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <!--<li> <a href=""><i class="icon icon-table"></i> <span>Open Performance Assurance</span></a> </li>-->
-    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open</span> <span class="label label-important">2</span></a>
+    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Open Ticket</span> <span class="label label-important">4</span></a>
       <ul>
-        <li><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open</a></li>
-        <li><a href="<?= base_url('index.php/PerformAssurance/report_open')?>">Report Open</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/open')?>">Data Open Ticket</a></li>
+        <li class=""><a href="<?= base_url('')?>">Report Open Ticket</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_open_month')?>">Report Open Ticket Month</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_open_yeartodate')?>">Report Open Ticket Year to Date</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Close</span> <span class="label label-important">2</span></a>
+    <li class="submenu"> <a href=""><i class="icon icon-th-list"></i> <span>Close Ticket</span> <span class="label label-important">2</span></a>
       <ul>
-        <li class=""><a href="<?= base_url('index.php/PerformAssurance/close')?>">Data Close</a></li>
-        <li><a href="<?= base_url('index.php/PerformAssurance/report_close')?>">Report Close</a></li>
+        <li><a href="<?= base_url('index.php/PerformAssurance/close')?>">Data Close Ticket</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_close')?>">Report Close Ticket</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_close_month')?>">Report Close Ticket Month</a></li>
+        <li class=""><a href="<?= base_url('index.php/PerformAssurance/report_close_yeartodate')?>">Report Close Ticket Year to Date</a></li>
       </ul>
     </li>
   </ul>

@@ -15,7 +15,7 @@
 <!--SearchSN start-->
 
 <script type="text/javascript">
-	$("#vendor").change(function(){
+	$("#vendor").keyup(function(){
     $.ajax({
         type: "POST",
         url: "<?php echo base_url('index.php/SearchSN/search_sn/');?>",
@@ -137,13 +137,13 @@
       }*/
 
       //CHART PERHARI
-      google.charts.setOnLoadCallback(drawChart);
+      /*google.charts.setOnLoadCallback(drawChart);
       google.charts.setOnLoadCallback(drawChart2);
       google.charts.setOnLoadCallback(drawChart3);
       google.charts.setOnLoadCallback(drawChart4);
 
       function drawChart() {
-        var result = '<?php echo $chart0; ?>';
+        var result = '<?php //echo $chart0; ?>';
         // console.log(result);
         var data = new google.visualization.DataTable(result);
         var options = {
@@ -156,7 +156,7 @@
       }
 
       function drawChart2() {
-        var result = '<?php echo $chart1; ?>';
+        var result = '<?php //echo $chart1; ?>';
         // console.log(result);
         var data = new google.visualization.DataTable(result);
         var options = {
@@ -169,7 +169,7 @@
       }
 
       function drawChart3() {
-        var result = '<?php echo $chart2; ?>';
+        var result = '<?php //echo $chart2; ?>';
         // console.log(result);
         var data = new google.visualization.DataTable(result);
         var options = {
@@ -182,7 +182,7 @@
       }
 
       function drawChart4() {
-        var result = '<?php echo $chart3; ?>';
+        var result = '<?php //echo $chart3; ?>';
         // console.log(result);
         var data = new google.visualization.DataTable(result);
         var options = {
@@ -192,7 +192,7 @@
         };
         var chart = new google.visualization.LineChart(document.getElementById('pa_fiber_hari'));
         chart.draw(data, options);
-      }
+      }*/
 
       //CHART PERHARI
       /*google.charts.setOnLoadCallback(drawChartC1);

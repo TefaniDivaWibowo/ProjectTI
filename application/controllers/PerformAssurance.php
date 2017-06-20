@@ -84,6 +84,29 @@ class PerformAssurance extends CI_Controller {
     	echo "</pre>";
     }
 
+    public function report_open_month(){
+    	$today 	= time(); //get today
+    	$full 	= date("Y-m-d", $today); //get date
+    	$month 	= date("m", $today); //get month
+
+    	$start 	= "2017-06-01";
+
+    	$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	    for($i = 1; $i <= count($kota); $i++){
+	        $data[$kota[$i]] = $this->PerformAss->get_this_month($kota[$i], $start, $full);
+	    }
+
+    	$this->load->view('header');
+		$this->load->view('report_open_month', $data);
+		$this->load->view('footer');
+    }
+
+    public function report_open_yeartodate(){
+    	$this->load->view('header');
+		$this->load->view('report_open_yeartodate');
+		$this->load->view('footer');
+    }
+
 	public function report_open()
 	{
 		//START PA COPPER
@@ -205,6 +228,19 @@ class PerformAssurance extends CI_Controller {
 		}
 	}
 
+	public function all(){
+		//$data['all_month'] = $this->PerformAss->get_all_month();
+
+		$kota  = array("MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	      for($i = 0; $i < count($kota); $i++){
+	        $data[$kota[$i]] = $this->PerformAss->get_all_month($kota[$i]);
+	    }
+
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
+	}
+
 	//END OPEN
 	//START CLOSE
 
@@ -231,6 +267,75 @@ class PerformAssurance extends CI_Controller {
 			$this->load->view('report_close', $data);
 			$this->load->view('footer');
 		}
+	}
+
+	public function report_close_month(){
+		$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	      for($i = 1; $i <= count($kota); $i++){
+	        $data['kota'][$kota[$i]] = $this->PerformAss->get_all_month_close($kota[$i]);
+	    }
+
+	    echo "<pre>";
+	    print_r($data);
+	    echo "</pre>";
+
+		/*$this->load->view('header');
+		$this->load->view('report_close_month', $data);
+		$this->load->view('footer');*/
+	}
+
+	public function rom(){
+		$bln 		= $this->input->post('bln');
+		$mipa 		= $this->input->post('mipa');
+		$tech 		= $this->input->post('tech');
+
+		$today 	= time(); //get today
+    	//$full 	= date("Y-m-d", $today); //get date
+    	$month 	= date("m", $today); //get month
+
+    	$start 	= "2017-04-01";
+    	$full 	= "2017-04-30";
+
+    	//echo $full;
+
+    	/*echo $mipa;
+    	echo "<br>";
+    	echo $tech;*/
+
+    	$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	    for($i = 1; $i <= count($kota); $i++){
+	        $data[$kota[$i]] = $this->PerformAss->get_search($kota[$i], $start, $full, $mipa, $tech);
+	    }
+
+    	/*$this->load->view('header');
+		$this->load->view('report_open_month', $data);
+		$this->load->view('footer');*/
+
+		//$data['rom']   = $this->PerformAss->get_search($bln, $mipa, $tech);
+
+
+		/*$this->load->view('header');
+	    $this->load->view('rev_base_date', $data);
+	    $this->load->view('footer');*/
+
+		/*$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	      for($i = 1; $i <= count($kota); $i++){
+	        $data['kota'][$kota[$i]] = $this->PerformAss->get_all_month_close($kota[$i]);
+	    }*/
+
+	    echo "<pre>";
+	    print_r($data);
+	    echo "</pre>";
+
+		/*$this->load->view('header');
+		$this->load->view('report_close_month', $data);
+		$this->load->view('footer');*/
+	}
+
+	public function report_close_yeartodate(){
+		$this->load->view('header');
+		$this->load->view('report_close_yeartodate');
+		$this->load->view('footer');
 	}
 
 	public function report_close()

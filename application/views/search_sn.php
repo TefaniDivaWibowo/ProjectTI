@@ -11,15 +11,9 @@
           <form method="post" action="" class="formSearch">
               <div class="controls form-group">
                 <div class="span3">
-                  <p style="text-align: center;">Pilih Nama Vendor</p>
+                  <p style="text-align: center;">Masukkan Nomor NTE</p>
                 </div>
-                <div class="span7">
-                  <select id="vendor" name="vendor" style="width: 100%;">
-                    <option value="" >Semua Vendor</option>
-                    <option value="TELKOM">Telkom</option>
-                    <option value="TELKOM AKSES">Telkom Akses</option>
-                  </select>
-                </div>
+                <input type="text" name="sn" class="span7" id="vendor">
               </div>
 
               <br>
@@ -63,7 +57,6 @@
             </table>
           </div>
           </div>
-        </form>
     </div>
   </div>
 </div>
