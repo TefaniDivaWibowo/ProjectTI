@@ -34,6 +34,7 @@ class Revenue extends CI_Controller {
 		$data['chart'] = json_encode($chart);
 		// print_r($chart);
 		// echo "</pre>";
+		$data['rev'] = $this->RevModel->get_all_rev();	
 		$this->load->view('header');
 		$this->load->view('home_rev', $data);
 		$this->load->view('footer', $data);
@@ -44,6 +45,108 @@ class Revenue extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('desain');
 		$this->load->view('footer');
+	}
+
+	public function upload_ba($id){
+		$this->load->view('header');
+		$data['psb'] = $this->RevModel->get_dt($id);		
+		$this->load->view('form_upload_ba', $data);
+		$this->load->view('footer');
+	}
+
+	public function update_bia($id){
+		$this->load->view('header');
+		$data['rev'] = $this->RevModel->get_biaya($id);
+		$this->load->view('update_biaya', $data);
+		$this->load->view('footer');
+	}
+
+	public function ubah_biaya($id){
+		$no    = $this->input->post('id_rev');
+		$p_kab = $this->input->post('panjang_kabel');
+		$p_pc  = $this->input->post('patch_cord');
+		$p_utp = $this->input->post('kabel_utp');
+		$lay = $this->input->post('layanan');
+		$stb = $this->input->post('stb_kedua');
+		$tiang = $this->input->post('tiang');
+
+		if($p_kab > 100){
+			$p_kab_add = $p_kab - 100;
+			$b_kab_m = $p_kab_add*5200;
+			$b_kab_j = $p_kab_add*3733;
+			$b_kab_add = $b_kab_m+$b_kab_j;
+		} else{
+			$p_kab_add = 0;
+			$b_kab_add = 0;
+		}
+
+		if($p_pc > 2){
+			$p_pc_add = $p_pc - 2;
+			$b_pc_add = $p_pc_add*7418;
+		} else{
+			$p_pc_add = 0;
+			$b_pc_add = 0;
+		}
+
+		if($p_utp > 2){
+			$p_utp_add = $p_utp - 2;
+			$b_utp_add = $p_utp_add*7667;
+		} else{
+			$p_utp_add = 0;
+			$b_utp_add = 0;
+		}
+
+		if($lay== 1){
+			$b_lay = 1037553;
+		} elseif($lay== 2){
+			$b_lay = 1115159;
+		} else{
+			$b_lay = 1155613; 
+		}
+		
+		if($stb == 0){
+			$b_stb = 0;
+		} else{			
+			$b_stb = $stb*98045;
+		}
+
+		if($tiang == 0){
+			$b_tiang = 0;
+		} else{			
+			$b_tiang_m = $tiang*1062706;
+			$b_tiang_j = $tiang*172387;
+			$b_tiang = $b_tiang_m+$b_tiang_j;
+		}
+
+		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
+
+		$data = array(
+            /*'nama' 			=> $this->input->post('nama'),
+            'alamat' 		=> $this->input->post('alamat'),
+            'odp' 			=> $this->input->post('odp'),
+            'ont' 			=> $this->input->post('ont'),
+            'stb' 			=> $this->input->post('stb'),
+            'layanan' 		=> $lay,
+            'jenis_kabel' 	=> $this->input->post('jenis_kabel'),*/
+            'panjang_kabel' => $p_kab,
+            'kelebihan_kabel' => $p_kab_add,
+            'tiang' 		=> $tiang,
+            'patch_cord' 	=> $p_pc,
+            'patch_cord_add'=> $p_pc_add,
+            'kabel_utp' 	=> $p_utp,
+            'kabel_utp_add' => $p_utp_add,
+            'kabel_pvc' 	=> $this->input->post('kabel_pvc'),
+            'stb_kedua' 	=> $stb,
+            // 'hasil_cek_redaman' => $this->input->post('hasil_cek_redaman'),
+            'biaya' 		=> $biaya
+            );
+		$where = array(
+            'id_rev'		=> $no
+    		);
+        $this->RevModel->Update('data_psb', $data, $where);
+        echo "<script>alert('Mengubah data biaya berhasil dilakukan')</script>";
+
+        redirect(base_url('index.php/Revenue'),'refresh');
 	}
 
 	public function form_psb(){
@@ -224,22 +327,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-				
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
 
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
@@ -270,6 +376,33 @@ class Revenue extends CI_Controller {
             'divisi' 		=> 'psb'
              );
         $this->RevModel->Add($data);
+        redirect(base_url('index.php/Revenue/data_psb'),'refresh');
+	}
+
+	public function update_psb($id){
+				$inti = $_FILES['ba_psb']['name'];
+				
+        		$config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
+
+                $this->load->library('upload', $config);
+ 
+                if (!$this->upload->do_upload('ba_psb')) {
+                        $error = array('error' => $this->upload->display_errors());
+        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+                }
+                else {
+                        $data = array('upload_data' => $this->upload->data());
+        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+                }
+
+        $data = array(
+            'ba_rev' 		=> $inti
+             );
+        $where = array(
+        'id_rev' => $id
+    		);
+        $this->RevModel->Update('data_psb', $data, $where);
         redirect(base_url('index.php/Revenue/data_psb'),'refresh');
 	}
 
@@ -332,22 +465,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
-
-                $this->load->library('upload', $config);
  
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -439,22 +575,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -546,22 +685,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -653,22 +795,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -760,22 +905,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -867,22 +1015,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -974,22 +1125,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),
@@ -1081,21 +1235,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
 
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
@@ -1188,22 +1346,25 @@ class Revenue extends CI_Controller {
 		$biaya = $b_lay+$b_kab_add+$b_pc_add+$b_utp_add+$b_stb+$b_tiang;
 
 				$inti = $_FILES['ba_psb']['name'];
-        		$config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-                $this->load->library('upload', $config);
- 
-                if (!$this->upload->do_upload('ba_psb')) {
-                        $error = array('error' => $this->upload->display_errors());
-        				echo "<script>alert('Berita acara berhasil di-upload')</script>";
-                }
-                else {
-                        $data = array('upload_data' => $this->upload->data());
-        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
-                }
+				if($inti == ""){
+		         	$inti = NULL;
+		         }else{
+		         	$config['upload_path']          = './uploads/';
+	                $config['allowed_types']        = 'pdf|jpg|png|doc|docx';
 
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
-
+	                $this->load->library('upload', $config);
+	 
+	                if (!$this->upload->do_upload('ba_psb')) {
+	                        $error = array('error' => $this->upload->display_errors());
+	        				echo "<script>alert('Berita acara gagal di-upload')</script>";
+	                }
+	                else {
+	                        $data = array('upload_data' => $this->upload->data());
+	        				echo "<script>alert('Berita acara berhasil ditambahkan')</script>";
+	                }
+		         }        		
+        // echo "<script>alert('Data berhasil ditambahkan')</script>";
         $data = array(
             'mdf' 			=> $this->input->post('mdf'),
             'wilayah'		=> $this->input->post('wilayah'),

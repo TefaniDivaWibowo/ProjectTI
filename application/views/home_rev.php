@@ -3,6 +3,13 @@ error_reporting(0);
 ?>
 <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
+    <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Menu Revenue</span> <span class="label label-important">4</span></a>
+      <ul>
+        <li><a href="<?= base_url('index.php/RevRekon/belum_rekon')?>">Data Belum Rekon</a></li>
+        <li><a href="<?= base_url('index.php/RevRekon/rekon')?>">Data Terrekon</a></li>
+        <li><a href="<?= base_url('index.php/RevRekon/tertagih')?>">Data Tertagih</a></li>
+      </ul>
+    </li>
     <li class="submenu"> <a href=""><i class="icon icon-truck"></i> <span>Infrastructure Delivery</span> <span class="label label-important">3</span></a>
       <ul>
         <li><a href="<?= base_url('index.php/Revenue/migrasi')?>">Form Migration</a></li>
@@ -64,6 +71,15 @@ error_reporting(0);
     <div id="breadcrumb"><!--<a href="#" title="Go to Home" class="tip-bottom">--></div>
     <h1>Dashboard Performance Revenue</h1>
   </div>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+      <h4>Total Target Revenue IDR <b><?= $rev;?> B</b></h4>
+      </div>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">

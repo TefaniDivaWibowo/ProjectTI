@@ -68,7 +68,7 @@ error_reporting(0);
     <hr>
     <div class="row-fluid">
       <div class="span12">
-          <div class="widget-content nopadding">
+          <div class="widget-content nopadding" style="overflow-x:auto;">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
@@ -82,7 +82,7 @@ error_reporting(0);
                   <th>ONT</th>
                   <th>STB</th>
                   <th>Layanan</th>
-                  <!-- <th>Jenis Kabel</th>
+                  <th>Jenis Kabel</th>
                   <th>Panjang Kabel</th>
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
@@ -118,7 +118,7 @@ error_reporting(0);
                     <td><?= $p['ont'];?></td>
                     <td><?= $p['stb'];?></td>
                     <td><?= $p['layanan'];?></td>
-                    <!-- <td><?= $p['jenis_kabel'];?></td>
+                    <td><?= $p['jenis_kabel'];?></td>
                     <td><?= $p['panjang_kabel'];?></td>
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
@@ -126,12 +126,23 @@ error_reporting(0);
                     <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
+                    <td><?= $p['kabel_pvc'];?></td>
                     <td><?= $p['stb_kedua'];?></td>
                     <td><?= $p['tgl_va'];?></td>
-                    <td><?= $p['tgl_ps'];?></td> -->
+                    <td><?= $p['tgl_ps'];?></td>
                     <td><?= $p['hasil_cek_redaman'];?></td>
                     <td><?= $p['biaya'];?></td>
-                    <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>
+                    <?php
+                      if($p['ba_rev'] != NULL ){?>
+                        <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
+                        <?php } elseif($p['ba_rev'] == ""){?>
+
+                    <td><a href="<?php echo base_url()."index.php/Revenue/upload_ba/" . $p['id_rev'] ."";?>">Upload BA</a></td>
+                        <?php } else{?>
+
+                    <td><a href="<?php echo base_url()."index.php/Revenue/upload_ba/" . $p['id_rev'] ."";?>">Upload BA</a></td>
+                        <?php }
+                    ?>
                   </tr>
                   <?php
                   }

@@ -28,11 +28,13 @@ class RevTarget extends CI_Controller {
 	public function tambah_target_ass()
 	{
 		$data = array(
-            'nominal' 		=> $this->input->post('target'),
-            'divisi'		=> 'ass'
+            'nominal' 		=> $this->input->post('target')
             );
-        $this->RevModel->add_target($data);
-        echo "<script>alert('Data berhasil ditambahkan')</script>";
+		$where = array(
+            'divisi'		=> 'ass'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_ass'),'refresh');
 	}
 
@@ -47,13 +49,23 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_psb()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'psb'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_psb'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'psb'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_psb'),'refresh');
+
 	}
 
 	public function target_mig()
@@ -67,12 +79,21 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_mig()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'mig'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_mig'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'mig'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_mig'),'refresh');
 	}
 
@@ -87,12 +108,21 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_pt2()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'pt2'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_pt2'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'pt2'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_pt2'),'refresh');
 	}
 
@@ -107,12 +137,21 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_pt3()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'pt3'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_pt3'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'pt3'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_pt3'),'refresh');
 	}
 
@@ -127,12 +166,21 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_dma()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'dma'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_dma'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'dma'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_dma'),'refresh');
 	}
 
@@ -147,12 +195,21 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_gamas()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'gamas'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_gamas'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'gamas'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_gamas'),'refresh');
 	}
 
@@ -167,12 +224,21 @@ class RevTarget extends CI_Controller {
 
 	public function tambah_target_mis()
 	{
-		$data = array(
+		/*$data = array(
             'nominal' 		=> $this->input->post('target'),
             'divisi'		=> 'mis'
             );
         $this->RevModel->add_target($data);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
+        redirect(base_url('index.php/RevTarget/target_mis'),'refresh');*/
+		$data = array(
+            'nominal' 		=> $this->input->post('target')
+            );
+		$where = array(
+            'divisi'		=> 'mis'
+    		);
+        $this->RevModel->Update('data_target_rev', $data, $where);
+        echo "<script>alert('Data target revenue berhasil diperbaharui')</script>";
         redirect(base_url('index.php/RevTarget/target_mis'),'refresh');
 	}
 }

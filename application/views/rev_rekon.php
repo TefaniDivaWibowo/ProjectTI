@@ -53,25 +53,70 @@ error_reporting(0);
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"></div>
-    <h1>Data Assurance</h1>
+    <h1>Data Sudah Rekon</h1>
   </div>
-
+<!-- 
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-      <h4>Revenue Assurance Rp <b><?= $rev;?></b></h4>
+      <h4>Revenue Rp <b><?= $rev;?></b></h4>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">
       <div class="span12">
-          <div class="widget-content nopadding" style="overflow-x:auto;">
+      <form method="post" action="<?php echo base_url()."index.php/searchba/cari_rekon";?>" class="formSearch">
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori Data:</p>
+                </div>
+                <div class="span7">
+                  <select name="kategori" style="width: 100%;">
+                    <option value="semua_ba" >Semua BA</option>
+                    <option value="psb">Provisioning Indihome</option>
+                    <option value="ggn">Assurance</option>
+                    <option value="migrasi">Migration</option>
+                    <option value="mainis">Maintenance Infra Support</option>
+                    <option value="main_access">Maintenance Access</option>
+                    <option value="gamas">Gamas & QE</option>
+                    <option value="pt3">Prog Optimization PT3</option>
+                    <option value="nodeb">NODE B</option>
+                    <option value="hem">HEM</option> 
+                    <option value="pt2">Prog Optimization PT2</option>
+                  </select>
+                </div>
+              </div>    
+
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori Area:</p>
+                </div>
+                <div class="span7">
+                  <select name="area" style="width: 100%;">
+                    <option value="semua_ba">Semua Area</option>
+                    <option value="malang">Malang</option>
+                    <option value="madiun">Madiun</option>
+                    <option value="pasuruan">Pasuruan</option>
+                    <option value="kediri">Kediri</option>
+                    <option value="jember">Jember</option>
+                  </select>
+                </div>
+              </div>  
+
+              <div class="controls form-group">
+              <div class="form-actions">
+              <div class="span7"><p style="text-align: center;">
+              <button type="submit" class="btn btn-success">Cari</button></p>
+              </div></div></div>
+              </form>
+          <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
+                  <th>Rekon</th>
                   <th>ID REV</th>
                   <th>MDF</th>
                   <th>Nomor Pots</th>
@@ -105,9 +150,17 @@ error_reporting(0);
                   $no = 0;
                       foreach($psb as $p){
                         $no++;
-
                   ?>
                   <tr>
+                    <?php
+                      if($p['rekon'] = "ok"){?>
+                    <td>Sudah Rekon</td>                      
+                        <?php } else if($p['rekon'] = "charge"){?>
+                    <td>Sudah Tertagih</td>                      
+                        <?php } else{?>                      
+                    <td><a href="<?php echo base_url()."index.php/RevRekon/rekon_cek/" . $p['id_rev'] ."";?>"><button class="btn btn-mini">Rekon</button></a></td>  
+                        <?php }
+                    ?>
                     <td><?= $p['id_rev'];?></td>
                     <td><?= $p['mdf'];?></td>
                     <td><?= $p['nomor_pots'];?></td>
@@ -133,7 +186,7 @@ error_reporting(0);
                     <td><?= $p['hasil_cek_redaman'];?></td>
                     <td><?= $p['biaya'];?></td>
                     <?php
-                      if($p['ba_rev'] != NULL || $p['ba_rev'] != ""){?>
+                      if($p['ba_rev'] != NULL ){?>
                         <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
                         <?php } else{?>
 

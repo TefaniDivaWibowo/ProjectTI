@@ -52,16 +52,16 @@ error_reporting(0);
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"></div>
-    <h1>Pencarian Data</h1>
+    <h1>Pencarian Data Untuk Rekon</h1>
   </div>
 
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
       <h4>Revenue Rp <b><?= $rev;?></b></h4>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="container-fluid">
     <hr>
@@ -120,7 +120,11 @@ error_reporting(0);
               <button type="submit" class="btn btn-success">Cari</button></p>
               </div></div></div>
               </form>
-          <div class="widget-content nopadding">
+          <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Tabel Data Hasil Pencarian</h5>
+          </div>
+          <div class="widget-content nopadding" style="overflow-x: auto;">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
@@ -135,7 +139,7 @@ error_reporting(0);
                   <th>ONT</th>
                   <th>STB</th>
                   <th>Layanan</th>
-                  <!-- <th>Jenis Kabel</th>
+                  <th>Jenis Kabel</th>
                   <th>Panjang Kabel</th>
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
@@ -146,7 +150,7 @@ error_reporting(0);
                   <th>Kabel PVC</th>
                   <th>STB Tambahan</th>
                   <th>Tanggal VA</th>
-                  <th>Tanggal PS</th> -->
+                  <th>Tanggal PS</th>
                   <th>Hasil Cek Redaman</th>
                   <th>Biaya</th>
                   <th>Bukti BA</th>
@@ -157,11 +161,18 @@ error_reporting(0);
                   $no = 0;
                       foreach($psb as $p){
                         $no++;
-
                   ?>
                   <tr>
-                    <td><a href=""><button class="btn btn-mini">Rekon</button></a></td>
-                    <td><?= $p['id_rev'];?></td>
+
+                    <?php
+                      if($p['rekon'] = "ok"){?>
+                    <td>Sudah Rekon</td>                      
+                        <?php } else{?>                      
+                    <td><a href="<?php echo base_url()."index.php/RevRekon/rekon_cek/" . $p['id_rev'] ."";?>"><button class="btn btn-mini">Rekon</button></a></td>  
+                        <?php }
+                    ?>
+
+                    <td><?= $p['id_rev'] . $p['rekon'];?></td>
                     <td><?= $p['mdf'];?></td>
                     <td><?= $p['nomor_pots'];?></td>
                     <td><?= $p['nomor_speedy'];?></td>
@@ -171,7 +182,7 @@ error_reporting(0);
                     <td><?= $p['ont'];?></td>
                     <td><?= $p['stb'];?></td>
                     <td><?= $p['layanan'];?></td>
-                    <!-- <td><?= $p['jenis_kabel'];?></td>
+                    <td><?= $p['jenis_kabel'];?></td>
                     <td><?= $p['panjang_kabel'];?></td>
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
@@ -179,18 +190,65 @@ error_reporting(0);
                     <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
+                    <td><?= $p['kabel_pvc'];?></td>
                     <td><?= $p['stb_kedua'];?></td>
                     <td><?= $p['tgl_va'];?></td>
-                    <td><?= $p['tgl_ps'];?></td> -->
+                    <td><?= $p['tgl_ps'];?></td>
                     <td><?= $p['hasil_cek_redaman'];?></td>
+
+                    <?php
+                      if($p['biaya'] != NULL ){?>
+                    <td><?= $p['biaya'];?></td>                       
+                        <?php } else{?>
+                    <td><a href="<?php echo base_url()."index.php/Revenue/update_bia/" . $p['id_rev'] ."";?>">Update biaya</a></td>
+                        <?php }
+                    ?>
+
                     <td><?= $p['biaya'];?></td>
-                    <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>
+                    <?php
+                      if($p['ba_rev'] != NULL ){?>
+                        <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
+                        <?php } else{?>
+                    <td><a href="<?php echo base_url()."index.php/Revenue/upload_ba/" . $p['id_rev'] ."";?>">Upload BA</a></td>
+                        <?php }
+                    ?>
                   </tr>
                   <?php
                   }
                 ?>
               </tbody>
             </table>
+
+              <button class="btn btn-primary">btn-primary</button>
+                <?php
+                  $no = 0;
+                  foreach($psb as $p){
+                ?>
+                <?php 
+                /*echo "Ini data";
+                echo $p['id_rev'];*/
+                $data1 = array();
+                array_push($data1, $p['id_rev']);
+               
+                // print_r($data1);
+                //$all = str_replace(' ', '', $data1[0]);
+                /*$all2 = substr_replace($all, "", -1);
+                $koma= implode(",", $all);*/
+                $a = "$data1[0],";
+                //$all3 = implode(',', $all);
+                //$all = strim($all, ',');
+                //$text = str_replace(' ', '', $all);
+                /*$b = preg_replace('/\s+/', '', $a);
+                $all4 = substr($b, 0, strlen($all)-1);*/
+                $b = trim($a);
+                echo $b;
+                // echo "<br>";
+                // echo substr($b, 0, -1);
+                ?>
+                <?php
+                  }
+                // print_r($data1[0][3]);
+                ?>
           </div>
         </div>
       </div>

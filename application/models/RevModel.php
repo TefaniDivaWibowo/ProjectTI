@@ -16,6 +16,50 @@ class RevModel extends CI_Model{
       return $query->result_array();
     }
 
+    function get_all_rek(){
+      $query = $this->db
+                    ->select('*')
+                    ->from('data_psb')
+                    ->where('rekon', 'ok')
+                    ->get();
+      return $query->result_array();
+    }
+
+    function get_all_tagih(){
+      $query = $this->db
+                    ->select('*')
+                    ->from('data_psb')
+                    ->where('rekon', 'charge')
+                    ->get();
+      return $query->result_array();
+    }
+
+    function get_biaya($id){
+      $query = $this->db
+                    ->select('*')
+                    ->from('data_psb')
+                    ->where('id_rev', $id)
+                    ->get();
+      return $query->result_array();
+    }
+
+    function get_all_rev(){
+      $query = $this->db
+                    ->select('SUM(nominal) as total')
+                    ->from('data_target_rev')
+                    ->get();
+      return $query->row()->total;
+    }
+    
+    function get_dt($id){
+      $query = $this->db
+                    ->select('*')
+                    ->from('data_psb')
+                    ->where('id_rev', $id)
+                    ->get();
+      return $query->result_array();
+    }
+
     function get_all_psb(){
       $query = $this->db
                     ->select('*')
@@ -235,6 +279,8 @@ class RevModel extends CI_Model{
       }
       return $cari->result_array();
   }
+
+
 
 }
 ?>

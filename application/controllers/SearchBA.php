@@ -74,8 +74,8 @@ class SearchBA extends CI_Controller {
 		$ka 		= $this->input->post('area');
 		$this->load->view('header');
 		$data['psb'] = $this->cari->get_dt_rekon($kt, $ka);
-		$data['rev'] = $this->cari->get_revenue($kt, $ka);
-		$this->load->view('table_ass_cek', $data);
+		// $data['rev'] = $this->cari->get_revenue($kt, $ka);
+		$this->load->view('rev_belum', $data);
 		$this->load->view('footer');
 	}
 

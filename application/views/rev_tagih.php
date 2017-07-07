@@ -57,7 +57,7 @@ error_reporting(0);
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
-          <form method="post" action="<?php echo base_url()."index.php/searchba/cari_hasil";?>" class="formSearch">
+          <form method="post" action="<?php echo base_url()."index.php/RevRekon/cari_hasil";?>" class="formSearch">
           <div class="form-actions">
           <?php
               $namaBulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",  "September", "Oktober",  "November", "Desember");
@@ -67,15 +67,40 @@ error_reporting(0);
           ?>
             <div class="controls form-group">
                 <div class="span3">
-                  <p style="text-align: center;">Pilih Kategori :</p>
+                  <p style="text-align: center;">Pilih Kategori Data:</p>
                 </div>
                 <div class="span7">
                   <select name="kategori" style="width: 100%;">
-                    <option value="tgl_va" >Tanggal VA</option>
-                    <option value="tgl_ps">Tanggal PS</option>
+                    <option value="semua_ba" >Semua BA</option>
+                    <option value="psb">Provisioning Indihome</option>
+                    <option value="ggn">Assurance</option>
+                    <option value="migrasi">Migration</option>
+                    <option value="mainis">Maintenance Infra Support</option>
+                    <option value="main_access">Maintenance Access</option>
+                    <option value="gamas">Gamas & QE</option>
+                    <option value="pt3">Prog Optimization PT3</option>
+                    <option value="nodeb">NODE B</option>
+                    <option value="hem">HEM</option> 
+                    <option value="pt2">Prog Optimization PT2</option>
                   </select>
                 </div>
-            </div>
+              </div>    
+
+              <div class="controls form-group">
+                <div class="span3">
+                  <p style="text-align: center;">Pilih Kategori Area:</p>
+                </div>
+                <div class="span7">
+                  <select name="area" style="width: 100%;">
+                    <option value="semua_ba">Semua Area</option>
+                    <option value="malang">Malang</option>
+                    <option value="madiun">Madiun</option>
+                    <option value="pasuruan">Pasuruan</option>
+                    <option value="kediri">Kediri</option>
+                    <option value="jember">Jember</option>
+                  </select>
+                </div>
+              </div>
  
             <div class="controls form-group">
                 <div class="span3">
@@ -127,7 +152,7 @@ error_reporting(0);
                 </div> -->
                 <div class="span2">
               <select name="tahun1" >
-              <?php for ($n=$tahun-4; $n<=$tahun+5 ; $n++) { ?>
+              <?php for ($n=$tahun; $n<=$tahun+5 ; $n++) { ?>
               <option value="<?php echo $n; ?>" > <?php echo $n; ?> </option>
               <?php } ?>
               </select>
@@ -186,7 +211,7 @@ error_reporting(0);
                 </div> -->
                 <div class="span2">
               <select name="tahun2" >
-              <?php for ($n=$tahun-4; $n<=$tahun+5 ; $n++) { ?>
+              <?php for ($n=$tahun; $n<=$tahun+5 ; $n++) { ?>
               <option value="<?php echo $n; ?>" > <?php echo $n; ?> </option>
               <?php } ?>
               </select>
@@ -204,9 +229,10 @@ error_reporting(0);
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Tabel Data Pencarian</h5>
           </div>
-          <div class="widget-content nopadding" style="overflow-x:auto;">
+          <div class="widget-content nopadding" style="overflow-x: auto;">
             <table class="table table-bordered data-table">
               <thead>
+                <th>Ditagihkan</th>
                 <th>ID REV</th>
                   <th>MDF</th>
                   <th>Nomor Pots</th>
@@ -243,6 +269,7 @@ error_reporting(0);
 
                   ?>
                   <tr>
+                    <td><a href="<?php echo base_url()."index.php/RevRekon/tagih_cek/" . $p['id_rev'] ."";?>"><button class="btn btn-mini">Rekon</button></a></td>
                     <td><?= $p['id_rev'];?></td>
                     <td><?= $p['mdf'];?></td>
                     <td><?= $p['nomor_pots'];?></td>
@@ -266,9 +293,17 @@ error_reporting(0);
                     <td><?= $p['tgl_va'];?></td>
                     <td><?= $p['tgl_ps'];?></td>
                     <td><?= $p['hasil_cek_redaman'];?></td>
-                    <td><?= $p['biaya'];?></td>
+                    
                     <?php
-                      if($p['ba_rev'] != NULL || $p['ba_rev'] != ""){?>
+                      if($p['biaya'] != NULL ){?>
+                    <td><?= $p['biaya'];?></td>                       
+                        <?php } else{?>
+                    <td><a href="<?php echo base_url()."index.php/Revenue/update_bia/" . $p['id_rev'] ."";?>">Update biaya</a></td>
+                        <?php }
+                    ?>
+
+                    <?php
+                      if($p['ba_rev'] != NULL ){?>
                         <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
                         <?php } else{?>
 

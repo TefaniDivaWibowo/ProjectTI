@@ -53,16 +53,16 @@ error_reporting(0);
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"></div>
-    <h1>Pencarian Data</h1>
+    <h1>Data Belum Rekon</h1>
   </div>
-
+<!-- 
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
       <h4>Revenue Rp <b><?= $rev;?></b></h4>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="container-fluid">
     <hr>
@@ -71,7 +71,7 @@ error_reporting(0);
       <form method="post" action="<?php echo base_url()."index.php/searchba/cari_rekon";?>" class="formSearch">
               <div class="controls form-group">
                 <div class="span3">
-                  <p style="text-align: center;">Pilih Kategori BA:</p>
+                  <p style="text-align: center;">Pilih Kategori Data:</p>
                 </div>
                 <div class="span7">
                   <select name="kategori" style="width: 100%;">
@@ -127,7 +127,7 @@ error_reporting(0);
                   <th>ONT</th>
                   <th>STB</th>
                   <th>Layanan</th>
-                  <!-- <th>Jenis Kabel</th>
+                  <th>Jenis Kabel</th>
                   <th>Panjang Kabel</th>
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
@@ -138,7 +138,7 @@ error_reporting(0);
                   <th>Kabel PVC</th>
                   <th>STB Tambahan</th>
                   <th>Tanggal VA</th>
-                  <th>Tanggal PS</th> -->
+                  <th>Tanggal PS</th>
                   <th>Hasil Cek Redaman</th>
                   <th>Biaya</th>
                   <th>Bukti BA</th>
@@ -152,8 +152,8 @@ error_reporting(0);
                         $no++;
 
                   ?>
-                  <tr>
-                    <td><a href=""><button class="btn btn-mini">Button</button></a></td>
+                  <tr>                     
+                    <td><a href="<?php echo base_url()."index.php/RevRekon/rekon_cek/" . $p['id_rev'] ."";?>"><button class="btn btn-mini">Rekon</button></a></td>
                     <td><?= $p['id_rev'];?></td>
                     <td><?= $p['mdf'];?></td>
                     <td><?= $p['nomor_pots'];?></td>
@@ -164,7 +164,7 @@ error_reporting(0);
                     <td><?= $p['ont'];?></td>
                     <td><?= $p['stb'];?></td>
                     <td><?= $p['layanan'];?></td>
-                    <!-- <td><?= $p['jenis_kabel'];?></td>
+                    <td><?= $p['jenis_kabel'];?></td>
                     <td><?= $p['panjang_kabel'];?></td>
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
@@ -172,12 +172,20 @@ error_reporting(0);
                     <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
+                    <td><?= $p['kabel_pvc'];?></td>
                     <td><?= $p['stb_kedua'];?></td>
                     <td><?= $p['tgl_va'];?></td>
-                    <td><?= $p['tgl_ps'];?></td> -->
+                    <td><?= $p['tgl_ps'];?></td>
                     <td><?= $p['hasil_cek_redaman'];?></td>
                     <td><?= $p['biaya'];?></td>
-                    <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>
+                    <?php
+                      if($p['ba_rev'] != NULL ){?>
+                        <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
+                        <?php } else{?>
+
+                    <td><a href="<?php echo base_url()."index.php/Revenue/upload_ba/" . $p['id_rev'] ."";?>">Upload BA</a></td>
+                        <?php }
+                    ?>
                   </tr>
                   <?php
                   }

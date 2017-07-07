@@ -5,13 +5,13 @@ error_reporting(0);
   <ul>
     <li class="submenu"> <a href=""><i class="icon icon-truck"></i> <span>Infrastructure Delivery</span> <span class="label label-important">2</span></a>
       <ul>
-        <li class="active"><a href="<?= base_url('index.php/Revenue/migrasi')?>">Form Migration</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/migrasi')?>">Form Migration</a></li>
         <li><a href="<?= base_url('index.php/Revenue/data_migrasi')?>">Data Migration</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
-        <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
         <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
@@ -48,12 +48,16 @@ error_reporting(0);
     <li class=""><a title="" href="<?= base_url('index.php/searchba/cari_data')?>"><i class="icon icon-search"></i> <span class="text">Cari Berdasarkan Tanggal</span></a></li>
   </ul>
 </div>
-
-<form action="<?php echo base_url()."index.php/revenue/insert_migrasi";?>" method="post" enctype="multipart/form-data">
+<?php
+    $no = 0;
+      foreach($rev as $r){
+    $no++;
+?>
+<form action="<?php echo base_url()."index.php/revenue/ubah_biaya/".$p['id_rev']."";?>" method="post" enctype="multipart/form-data">
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"></div>
-  <h1>Form Migration</h1>
+  <h1>Form Assurance</h1>
 </div>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -67,7 +71,7 @@ error_reporting(0);
               <label class="control-label">Witel :</label>
               <div class="controls">
                 <select class="span11" name="wilayah" required/>
-                  <option value="madiun">Madiun</option>
+                  <option value="<?= $r['wilayah']; ?>"><?= $r['wilayah']; ?></option>
                   <option value="pasuruan">Pasuruan</option>
                   <option value="malang">Malang</option>
                   <option value="jember">Jember</option>
@@ -78,55 +82,58 @@ error_reporting(0);
             <div class="control-group">
               <br><br><label class="control-label">MDF :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan MDF" name="mdf" required/>
+                <input value="<?= $r['mdf'];?>" type="text" class="span11" placeholder="Ketikkan MDF" name="mdf" required/>
+
+                <input type="hidden" class="span11" value="<?= $r['id_rev'];?>" name="id_rev"/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Nomor Pots :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan nomor pots" name="nomor_pots" required/>
+                <input value="<?= $r['nomor_pots'];?>" type="text" class="span11" placeholder="Ketikkan nomor pots" name="nomor_pots" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Nomor Speedy :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan nomor speedy" name="nomor_speedy" required/>
+                <input value="<?= $r['nomor_pots'];?>" type="text" class="span11" placeholder="Ketikkan nomor speedy" name="nomor_speedy" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Nama :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan nama" name="nama" required/>
+                <input value="<?= $r['nama'];?>" type="text" class="span11" placeholder="Ketikkan nama" name="nama" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Alamat :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan alamat" name="alamat" required/>
+                <input value="<?= $r['alamat'];?>" type="text" class="span11" placeholder="Ketikkan alamat" name="alamat" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">ODP :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan nama ODP" name="odp" required/>
+                <input value="<?= $r['odp'];?>" type="text" class="span11" placeholder="Ketikkan nama ODP" name="odp" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">ONT :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan nama ONT" name="ont" required/>
+                <input value="<?= $r['ont'];?>" type="text" class="span11" placeholder="Ketikkan nama ONT" name="ont" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">STB :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan nama STB" name="stb" required/>
+                <input value="<?= $r['stb'];?>" type="text" class="span11" placeholder="Ketikkan nama STB" name="stb" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Layanan :</label>
               <div class="controls">
                 <select class="span11" name="layanan" required/>                
+    <option value="<?= $r['layanan'];?>"><?= $r['layanan'];?></option>
     <option value="1">OP-1P</option>
     <option value="2">OP-2P</option>
     <option value="3">OP-3P</option>
@@ -147,74 +154,76 @@ error_reporting(0);
             <div class="control-group">
               <label class="control-label">Jenis Kabel :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan jenis kabel" name="jenis_kabel" required/>
+                <input value="<?= $r['jenis_kabel'];?>" type="text" class="span11" placeholder="Ketikkan jenis kabel" name="jenis_kabel" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Panjang Kabel :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan panjang kabel" name="panjang_kabel" required/> meter
+                <input value="<?= $r['panjang_kabel'];?>" type="text" class="span11" placeholder="Ketikkan panjang kabel" name="panjang_kabel" required/> meter
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Tiang :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan jumlah tiang" name="tiang" required/> batang
+                <input value="<?= $r['tiang'];?>" type="text" class="span11" placeholder="Ketikkan jumlah tiang" name="tiang" required/> batang
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Patch Cord :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan jumlah patch cord" name="patch_cord" required/> buah
+                <input value="<?= $r['patch_cord'];?>" type="text" class="span11" placeholder="Ketikkan jumlah patch cord" name="patch_cord" required/> buah
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Kabel UTP :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan panjang kabel utp" name="kabel_utp" required/> meter
+                <input value="<?= $r['kabel_utp'];?>" type="text" class="span11" placeholder="Ketikkan panjang kabel utp" name="kabel_utp" required/> meter
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Kabel PVC :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan panjang kabel pvc" name="kabel_pvc" required/> meter
+                <input value="<?= $r['kabel_pvc'];?>" type="text" class="span11" placeholder="Ketikkan panjang kabel pvc" name="kabel_pvc" required/> meter
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">STB Tambahan :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan jumlah stb tambahan" name="stb_kedua" required/> buah
+                <input value="<?= $r['stb_kedua'];?>" type="text" class="span11" placeholder="Ketikkan jumlah stb tambahan" name="stb_kedua" required/> buah
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Tanggal VA :</label>
               <div class="controls">
-                <input type="date" class="span11" name="tgl_va" required/>
+                <input value="<?= $r['tgl_va'];?>" type="date" class="span11" name="tgl_va" readonly/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Tanggal PS :</label>
               <div class="controls">
-                <input type="date" class="span11" name="tgl_ps" required/>
+                <input value="<?= $r['tgl_ps'];?>" type="date" class="span11" name="tgl_ps" readonly/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Hasil Cek Redaman :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan hasil cek redaman" name="hasil_cek_redaman" required/>
+                <input value="<?= $r['hasil_cek_redaman'];?>" type="text" class="span11" placeholder="Ketikkan hasil cek redaman" name="hasil_cek_redaman" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Berita Acara :</label>
               <div class="controls">
-                <input type="file" class="span11" name="ba_psb"/>
+                <input value="<?= $r['ba_rev'];?>" type="text" class="span11" name="ba_psb"/>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+<?php
+}
+?>
     <div class="row-fluid">
     <div class="span12">
       <div class="widget-box">

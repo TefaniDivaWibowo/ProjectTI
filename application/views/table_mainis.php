@@ -88,13 +88,13 @@ error_reporting(0);
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
                   <th>Patch Cord</th>
-                  <!-- <th>Patch Cord Tambahan</th>
+                  <th>Patch Cord Tambahan</th>
                   <th>Kabel UTP</th>
                   <th>Kabel UTP Tambahan</th>
                   <th>Kabel PVC</th>
                   <th>STB Tambahan</th>
                   <th>Tanggal VA</th>
-                  <th>Tanggal PS</th> -->
+                  <th>Tanggal PS</th>
                   <th>Hasil Cek Redaman</th>
                   <th>Biaya</th>
                   <th>Bukti BA</th>
@@ -124,15 +124,23 @@ error_reporting(0);
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
                     <td><?= $p['patch_cord'];?></td>
-                    <!-- <td><?= $p['patch_cord_add'];?></td>
+                    <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
+                    <td><?= $p['kabel_pvc'];?></td>
                     <td><?= $p['stb_kedua'];?></td>
                     <td><?= $p['tgl_va'];?></td>
-                    <td><?= $p['tgl_ps'];?></td> -->
+                    <td><?= $p['tgl_ps'];?></td>
                     <td><?= $p['hasil_cek_redaman'];?></td>
                     <td><?= $p['biaya'];?></td>
-                    <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>
+                    <?php
+                      if($p['ba_rev'] != NULL ){?>
+                        <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
+                        <?php } else{?>
+
+                    <td><a href="<?php echo base_url()."index.php/Revenue/upload_ba/" . $p['id_rev'] ."";?>">Upload BA</a></td>
+                        <?php }
+                    ?>
                   </tr>
                   <?php
                   }

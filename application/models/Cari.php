@@ -12,23 +12,29 @@
 
     function get_search_data($kt, $isi){
       if($kt == "nomor_inet"){
-        $ba  = $this->db
+        /*$ba  = $this->db
                 ->select('*')
                 ->from('data_psb')
                 ->where('nomor_speedy', $isi)
-                ->get();
-      } else if($kt == "nomor_telp"){
+                ->get();*/
         $ba  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE nomor_speedy IN(".$isi.") AND ba_rev IS NOT NULL");
+      } else if($kt == "nomor_telp"){
+        /*$ba  = $this->db
                 ->select('*')
                 ->from('data_psb')
                 ->where('nomor_pots', $isi)
-                ->get();
-      } else{
+                ->get();*/
         $ba  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE nomor_pots IN(".$isi.") AND ba_rev IS NOT NULL");
+      } else{
+        /*$ba  = $this->db
                 ->select('*')
                 ->from('data_psb')
                 ->where('ont', $isi)
-                ->get();      
+                ->get();*/
+        $ba  = $this->db
+                      ->query("SELECT * FROM data_psb WHERE ont IN('".$isi."') AND ba_rev IS NOT NULL");
     }
       return $ba->result_array();
   }

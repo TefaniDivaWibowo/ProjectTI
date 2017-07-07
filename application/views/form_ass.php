@@ -207,7 +207,7 @@ error_reporting(0);
             <div class="control-group">
               <label class="control-label">Berita Acara :</label>
               <div class="controls">
-                <input type="file" class="span11" name="ba_psb" required/>
+                <input type="file" class="span11" name="ba_psb"/>
               </div>
             </div>
           </div>

@@ -152,7 +152,7 @@ error_reporting(0);
                 </div> -->
                 <div class="span2">
               <select name="tahun1" >
-              <?php for ($n=$tahun-4; $n<=$tahun+5 ; $n++) { ?>
+              <?php for ($n=$tahun; $n<=$tahun+5 ; $n++) { ?>
               <option value="<?php echo $n; ?>" > <?php echo $n; ?> </option>
               <?php } ?>
               </select>
@@ -211,7 +211,7 @@ error_reporting(0);
                 </div> -->
                 <div class="span2">
               <select name="tahun2" >
-              <?php for ($n=$tahun-4; $n<=$tahun+5 ; $n++) { ?>
+              <?php for ($n=$tahun; $n<=$tahun+5 ; $n++) { ?>
               <option value="<?php echo $n; ?>" > <?php echo $n; ?> </option>
               <?php } ?>
               </select>
@@ -229,7 +229,7 @@ error_reporting(0);
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Tabel Data Pencarian</h5>
           </div>
-          <div class="widget-content nopadding">
+          <div class="widget-content nopadding" style="overflow-x: auto;">
             <table class="table table-bordered data-table">
               <thead>
                 <th>ID REV</th>
@@ -242,7 +242,7 @@ error_reporting(0);
                   <th>ONT</th>
                   <th>STB</th>
                   <th>Layanan</th>
-                  <!-- <th>Jenis Kabel</th>
+                  <th>Jenis Kabel</th>
                   <th>Panjang Kabel</th>
                   <th>Kelebihan Kabel</th>
                   <th>Tiang</th>
@@ -253,7 +253,7 @@ error_reporting(0);
                   <th>Kabel PVC</th>
                   <th>STB Tambahan</th>
                   <th>Tanggal VA</th>
-                  <th>Tanggal PS</th> -->
+                  <th>Tanggal PS</th>
                   <th>Hasil Cek Redaman</th>
                   <th>Biaya</th>
                   <th>Bukti BA</th>
@@ -278,7 +278,7 @@ error_reporting(0);
                     <td><?= $p['ont'];?></td>
                     <td><?= $p['stb'];?></td>
                     <td><?= $p['layanan'];?></td>
-                    <!-- <td><?= $p['jenis_kabel'];?></td>
+                    <td><?= $p['jenis_kabel'];?></td>
                     <td><?= $p['panjang_kabel'];?></td>
                     <td><?= $p['kelebihan_kabel'];?></td>
                     <td><?= $p['tiang'];?></td>
@@ -286,12 +286,28 @@ error_reporting(0);
                     <td><?= $p['patch_cord_add'];?></td>
                     <td><?= $p['kabel_utp'];?></td>
                     <td><?= $p['kabel_utp_add'];?></td>
+                    <td><?= $p['kabel_pvc'];?></td>
                     <td><?= $p['stb_kedua'];?></td>
                     <td><?= $p['tgl_va'];?></td>
-                    <td><?= $p['tgl_ps'];?></td> -->
+                    <td><?= $p['tgl_ps'];?></td>
                     <td><?= $p['hasil_cek_redaman'];?></td>
-                    <td><?= $p['biaya'];?></td>
-                    <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>
+                    
+                    <?php
+                      if($p['biaya'] != NULL ){?>
+                    <td><?= $p['biaya'];?></td>                       
+                        <?php } else{?>
+                    <td><a href="<?php echo base_url()."index.php/Revenue/update_bia/" . $p['id_rev'] ."";?>">Update biaya</a></td>
+                        <?php }
+                    ?>
+
+                    <?php
+                      if($p['ba_rev'] != NULL ){?>
+                        <td><a href="base_url();../../../../uploads/<?= $p['ba_rev'];?>"><?= $p['ba_rev'];?></a></td>                        
+                        <?php } else{?>
+
+                    <td><a href="<?php echo base_url()."index.php/Revenue/upload_ba/" . $p['id_rev'] ."";?>">Upload BA</a></td>
+                        <?php }
+                    ?>
                   </tr>
                   <?php
                   }

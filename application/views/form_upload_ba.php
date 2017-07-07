@@ -11,13 +11,13 @@ error_reporting(0);
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-wrench"></i> <span>Assurance</span> <span class="label label-important">2</span></a>
       <ul>
-        <li class="active"><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
+        <li><a href="<?= base_url('index.php/Revenue/form_ass')?>">Form Assurance</a></li>
         <li><a href="<?= base_url('index.php/Revenue/data_ass')?>">Data Assurance</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href=""><i class="icon icon-bandcamp"></i> <span>Provisioning Indihome</span> <span class="label label-important">2</span></a>
       <ul>
-        <li><a href="<?= base_url('index.php/Revenue/form_psb')?>">Form Provisioning</a></li>
+        <li class="active"><a href="<?= base_url('index.php/Revenue/form_psb')?>">Form Provisioning</a></li>
         <li><a href="<?= base_url('index.php/Revenue/data_psb')?>">Data Provisioning</a></li>
       </ul>
     </li>
@@ -48,49 +48,72 @@ error_reporting(0);
     <li class=""><a title="" href="<?= base_url('index.php/searchba/cari_data')?>"><i class="icon icon-search"></i> <span class="text">Cari Berdasarkan Tanggal</span></a></li>
   </ul>
 </div>
+          <?php
+            foreach ($psb as $p) {
+          ?>
+<form action="<?php echo base_url()."index.php/revenue/update_psb/".$p['id_rev']."";?>" method="post" enctype="multipart/form-data">
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"></div>
-  <h1>Form Update Target Revenue Migration</h1>
+  <h1>Form Upload Berita Acara</h1>
 </div>
-
-  
-    <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span12">
-      <h4>Target Revenue Migration IDR <b><?= $rev;?></b> M</h4>
-      </div>
-    </div>
-  </div>
-
 <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-      <form action="<?php echo base_url()."index.php/revtarget/tambah_target_mig";?>" method="post">
         <div class="widget-box">
           <div class="widget-title">
-            <h5>Input Data Revenue</h5>
+            <h5>Data Pelanggan</h5>
           </div>
-          <div class="widget-content">           
-            <div class="control-group">
-              <label class="control-label">Target Revenue :</label>
+          <div class="widget-content">
+           <div class="control-group">
+              <label class="control-label">Witel :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Ketikkan jumlah target revenue assurance dalam satuan juta" name="target" required/>
+                <input type="text" class="span11" value="<?= $p['wilayah'];?>" name="witel" disabled/>
               </div>
             </div>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success">Update</button>
+            <div class="control-group">
+              <label class="control-label">Nomor Pots :</label>
+              <div class="controls">
+                <input type="text" class="span11" name="nomor_pots" value="<?= $p['nomor_pots'];?>" disabled/>
+              </div>
             </div>
+            <div class="control-group">
+              <label class="control-label">Nomor Speedy :</label>
+              <div class="controls">
+                <input type="text" class="span11" name="nomor_speedy" value="<?= $p['nomor_speedy'];?>" disabled/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Nama :</label>
+              <div class="controls">
+                <input type="text" class="span11" value="<?= $p['nama'];?>" disabled/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Berita Acara :</label>
+              <div class="controls">
+                <input type="file" class="span11" name="ba_psb" required/>
+              </div>
+            </div>
+            <?php
+              }
+            ?>
           </div>
         </div>
-        </form>
       </div>
     </div>
+    
     <div class="row-fluid">
     <div class="span12">
+      <div class="widget-box">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Kirim</button>
+            </div>
+        </div>
       </div>
     </div>
   </div>
+  </form>
 </div></div>
 </body>
 </html>

@@ -8,21 +8,38 @@ class RevRekon extends CI_Controller {
       $this->load->helper('url');
       $this->load->model('RevModel');
     }
-
+    //rencana: untuk laporan rekon
 	public function index()
 	{
-		$this->load->view('header');
+		/*$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_all();
 		$this->load->view('rev_target_ass');
+		$this->load->view('footer');*/
+
+		echo "Haii.. ini index dari RevRekon";
+	}
+	// pencarian tanpa tanggal
+	public function rekon(){
+		$this->load->view('header');
+		$data['psb'] = $this->RevModel->get_all_rek();
+		$this->load->view('rev_rekon', $data);
 		$this->load->view('footer');
 	}
 
-	public function rekon(){
+	public function tertagih(){
 		$this->load->view('header');
-		$data['psb'] = $this->RevModel->get_all();
-		$this->load->view('table_ass_cek', $data);
+		$data['psb'] = $this->RevModel->get_all_tagih();
+		$this->load->view('rev_tagih', $data);
 		$this->load->view('footer');
 	}
+
+	public function belum_rekon(){
+		$this->load->view('header');
+		$data['psb'] = $this->RevModel->get_all();
+		$this->load->view('rev_belum', $data);
+		$this->load->view('footer');
+	}
+
 
 	public function data_dikerjakan(){
 		$this->load->view('header');
@@ -35,7 +52,6 @@ class RevRekon extends CI_Controller {
 		$kt = $this->input->post('kategori');
 		$ka  = $this->input->post('area');
 		$ni = $this->input->post('no_inet');
-
 		$this->load->view('header');
 		$data['psb'] = $this->RevModel->get_kerja($kt, $ka, $ni);
 		$this->load->view('rev_dikerjakan', $data);
@@ -64,4 +80,34 @@ class RevRekon extends CI_Controller {
 		$this->load->view('rev_base_date', $data);
 		$this->load->view('footer');
 	}
+
+	public function rekon_cek($id)
+	{		
+        $data = array(
+            'rekon' => 'ok'
+             );
+        $where = array(
+        'id_rev' => $id
+    		);
+        $this->RevModel->Update('data_psb', $data, $where);
+        redirect(base_url('index.php/RevRekon/data_dikerjakan'),'refresh');
+	}
+
+	public function tagih_cek($id)
+	{		
+        $data = array(
+            'rekon' => 'charge'
+             );
+        $where = array(
+        'id_rev' => $id
+    		);
+        $this->RevModel->Update('data_psb', $data, $where);
+        redirect(base_url('index.php/RevRekon/data_dikerjakan'),'refresh');
+	}
+
+	public function rekon_cek1()
+	{
+        $this->load->view('selisih');
+	}
+	
 }
