@@ -61,44 +61,7 @@ div.pager span.active {
           </div>
           &nbsp;&nbsp;&nbsp;
           <div class="span3">
-            <select name="date">
-              <option value="all">Date</option>
-              <?php
-                for ($i=1; $i < 31; $i++) { 
-                  echo "<option value='$i'>$i</option>";
-                }
-              ?>
-            </select>
-            
-            <br>
-
-            <select name="month">
-              <option value="all">Month</option>
-              <?php
-                $bln  = array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
-                for($bulan = 1; $bulan <= 12; $bulan++){
-                  if($bulan <= 9) { 
-                    echo "<option value='$bulan'>$bln[$bulan]</option>"; 
-                  } else { 
-                    echo "<option value='$bulan'>$bln[$bulan]</option>"; 
-                  }
-                }
-              ?>
-            </select name="year">
-            
-            <br>
-
-            <select>
-              <option value="all">Year</option>
-              <?php
-                $yearArray = range(2015, 2017);
-                foreach ($yearArray as $year) {
-                  // if you want to select a particular year
-                  $selected = ($year == 2015) ? 'selected' : '';
-                  echo '<option value="'.$year.'">'.$year.'</option>';
-                }
-              ?>
-            </select>
+            <input type="date" name="date">
           </div>
         </div>
       </div>

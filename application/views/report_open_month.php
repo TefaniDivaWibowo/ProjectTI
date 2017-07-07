@@ -65,23 +65,28 @@ div.pager span.active {
             <select name="bln">
               <option value="all">All</option>
               <?php
-                $bln  = array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
-                for ($i = 1; $i <= 12; $i++)
-                {
-                    $month = ($i < 10) ? '0'.$i : $i;
-                    echo '<option value="'.$month.'"';
-                    if ($i == date("n")) echo ' selected="selected"';
-                    echo '>'.$month.'</option>';
-                }
-
-                /*$bln  = array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
-                for($bulan = 1; $bulan <= 12; $bulan++){
-                  if($bulan <= 9) { 
-                    echo "<option value='0$bulan'>$bln[$bulan]</option>"; 
-                  } else { 
-                    echo "<option value='$bulan'>$bln[$bulan]</option>"; 
+                $monthName  = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+                for ($i=0; $i < count($monthName); $i++) { 
+                  $mn   = 1 + $i;
+                  if ($mn == date("m")) {
+                    if ($mn < 9) {
+                      $bln  = "0" . $mn;
+                      echo "<option selected value=". $bln .">" . $monthName[$i] . "</option>";
+                    }
+                    else {
+                      echo "<option value=". $mn .">" . $monthName[$i] . "</option>";
+                    }
+                  } 
+                  else {
+                    if ($mn < 9) {
+                      $bln  = "0" . $mn;
+                      echo "<option value=". $bln .">" . $monthName[$i] . "</option>";
+                    } 
+                    else {
+                      echo "<option value=". $mn .">" . $monthName[$i] . "</option>";
+                    }
                   }
-                }*/
+                }
               ?>
             </select>
           </div>

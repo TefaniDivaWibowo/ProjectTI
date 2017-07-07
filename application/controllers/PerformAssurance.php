@@ -9,26 +9,35 @@ class PerformAssurance extends CI_Controller {
       $this->load->model('PerformAss');
     }
 
+    function dateSub($tgl1, $tgl2){
+		$tgl1 		= strtotime($tgl1);
+		$tgl2 		= strtotime($tgl2);
+		$diff_secs 	= abs($tgl1 - $tgl2);
+		$base_year 	= min(date("Y", $tgl1), date("Y", $tgl2));
+		$diff 		= mktime(0, 0, $diff_secs, 1, 1, $base_year);
+		return array( "years" => date("Y", $diff) - $base_year, "months_total" => (date("Y", $diff) - $base_year) * 12 + date("n", $diff) - 1, "months" => date("n", $diff) - 1, "days_total" => floor($diff_secs / (3600 * 24)), "days" => date("j", $diff) - 1, "hours_total" => floor($diff_secs / 3600), "hours" => date("G", $diff), "minutes_total" => floor($diff_secs / 60), "minutes" => (int) date("i", $diff), "seconds_total" => $diff_secs, "seconds" => (int) date("s", $diff) );
+	}
+
     public function index()
 	{
 		//CHARTS OPEN
-		$tipe = array(array("1"=>$this->PerformAss->get_ta_copper_date()),array("2"=>$this->PerformAss->get_ta_fiber_date()),array("3"=>$this->PerformAss->get_pa_copper_date()),array("4"=>$this->PerformAss->get_pa_copper_date()));
+		/*$tipe = array(array("1"=>$this->PerformAss->get_ta_copper_date()),array("2"=>$this->PerformAss->get_ta_fiber_date()),array("3"=>$this->PerformAss->get_pa_copper_date()),array("4"=>$this->PerformAss->get_pa_copper_date()));
 		
 		for($i = 0; $i < count($tipe); $i++){
 			$chart = (object) [];
-			$chart->cols = array((object) array("type" => "string"), (object) array("type" => "number"));
+			$chart->cols = array((object) array("type" => "string"), (object) array("type" => "number"));/*
 			$chart->rows = $tipe[$i][$i+1];
-			$value = [];
-			foreach ($chart->rows as $row) {
+			$value = [];*/
+			/*foreach ($chart->rows as $row) {
 				$tempValue = (object)array("c"=>array((object)array("v"=>$row->ttr_customer),(object)array("v"=>$row->count)));
 				array_push($value, $tempValue);
-			}
-			$chart->rows = $value;
+			}*/
+			/*$chart->rows = $value;
 			$data['chart'.$i] = json_encode($chart);
-		}
+		}*/
 
 		//CHARTS CLOSE
-		$tipe2 = array(array("1"=>$this->PerformAss->get_ta_copper_date_close()),array("2"=>$this->PerformAss->get_ta_fiber_date_close()),array("3"=>$this->PerformAss->get_pa_fiber_date_close()),array("4"=>$this->PerformAss->get_pa_copper_date_close()));
+		/*$tipe2 = array(array("1"=>$this->PerformAss->get_ta_copper_date_close()),array("2"=>$this->PerformAss->get_ta_fiber_date_close()),array("3"=>$this->PerformAss->get_pa_fiber_date_close()),array("4"=>$this->PerformAss->get_pa_copper_date_close()));
 		for($i = 0; $i < count($tipe2); $i++){
 			$chart2 = (object) [];
 			$chart2->cols = array((object) array("type" => "string"), (object) array("type" => "number"));
@@ -40,20 +49,126 @@ class PerformAssurance extends CI_Controller {
 			}
 			$chart2->rows = $value;
 			$data['chart2'.$i] = json_encode($chart2);
+		}*/
+		//$data['chart'] = json_encode($chart);
+
+		//MTTR ALL
+		//$data['data_close'] 	= $this->PerformAss->get_total_data_close();
+		/*$data['data_retu'] 		= $this->PerformAss->get_data_retu();
+
+		$data['tot_dat'] 	= array();
+		$total_waktu 		= 0;
+		foreach($data['data_retu']  as $b) { 
+				$date1 		= $b->reported_date;
+				$date2		= $b->status_date;
+				$a 			= $this->dateSub($date1, $date2);
+				$selisih 	= $a['hours'] . ":" . $a['minutes']. ":" . $a['seconds'];
+
+				array_push($data['tot_dat'], array("Reported Date"=>$date1, "Status Date"=>$date2, "Selisih"=>$selisih));
+
+				//print_r($a);
+
+				/*echo $date1 . "<br>";
+				echo $date2 . "<br>";
+				echo $selisih . "<br><br>";*/
+
+				/*$total_waktu += $a['seconds_total'];
 		}
 
-		//$data['chart'] = json_encode($chart);
+		$seconds 	= floor($total_waktu/count($data['tot_dat']));
+		$H 			= floor($seconds/3600);
+		$i 			= ($seconds/60)%60;
+		$s 			= $seconds%60;
+
+		echo "MTTR ALL";
+		echo sprintf("%02d:%02d:%02d", $H, $i, $s);*/
+
+		//print_r($data);
+
+		/*$total 	= date_diff($selisih);
+
+		echo $total;*/
+
+
+		//MTTR FIBER
+		//$data['data_close_fiber'] = $this->PerformAss->get_total_data_close_f();
+		$data['data_retu_fiber'] 	= $this->PerformAss->get_data_retu_fiber();
+
+		$sel['tot_dat'] 	= array();
+		$total_waktu 		= 0;
+		$hitung 			= 0;
+		foreach($data['data_retu_fiber']  as $b) { 
+				$date1 		= $b->reported_date;
+				$date2		= $b->status_date;
+				$a 			= $this->dateSub($date1, $date2);
+				$selisih 	= $a['hours'] . ":" . $a['minutes']. ":" . $a['seconds'];
+
+				array_push($sel['tot_dat'], array("Reported Date"=>$date1, "Status Date"=>$date2, "Selisih"=>$selisih));
+
+				if ($a['hours'] > 48) {
+					$hitung++;
+				}
+
+				//print_r($a);
+
+				/*echo $date1 . "<br>";
+				echo $date2 . "<br>";
+				echo $selisih . "<br><br>";*/
+
+				/*$total_waktu += $a['seconds_total'];*/
+		}
+
+		/*$seconds 	= floor($total_waktu/count($data['tot_dat']));
+		$H 			= floor($seconds/3600);
+		$i 			= ($seconds/60)%60;
+		$s 			= $seconds%60;
+
+		echo "MTTR Fiber";
+		echo sprintf("%02d:%02d:%02d", $H, $i, $s);*/
+
+		//MTTR COPPER
+		//$data['data_close_copper'] 	= $this->PerformAss->get_total_data_close_c();
+		/*$data['data_retu_copper'] 	= $this->PerformAss->get_data_retu_copper();
+
+		$data['tot_dat'] 	= array();
+		$total_waktu 		= 0;
+		foreach($data['data_retu_copper']  as $b) { 
+				$date1 		= $b->reported_date;
+				$date2		= $b->status_date;
+				$a 			= $this->dateSub($date1, $date2);
+				$selisih 	= $a['hours'] . ":" . $a['minutes']. ":" . $a['seconds'];
+
+				array_push($data['tot_dat'], array("Reported Date"=>$date1, "Status Date"=>$date2, "Selisih"=>$selisih));*/
+
+				//print_r($a);
+
+				/*echo $date1 . "<br>";
+				echo $date2 . "<br>";
+				echo $selisih . "<br><br>";*/
+
+				/*$total_waktu += $a['seconds_total'];
+		}
+
+		$seconds 	= floor($total_waktu/count($data['tot_dat']));
+		$H 			= floor($seconds/3600);
+		$i 			= ($seconds/60)%60;
+		$s 			= $seconds%60;
+
+		echo "MTTR COPPER";
+		echo sprintf("%02d:%02d:%02d", $H, $i, $s);*/
+
 		/*echo "<pre>";
-		print_r($data);
+		print_r($sel);
 		echo "</pre>";*/
 
-		$this->load->view('header');
-		$this->load->view('dash_perform_assurance', $data);
-		$this->load->view('footer', $data);
+		echo $hitung;
+
+		/*$this->load->view('header');
+		$this->load->view('dash_perform_assurance');
+		$this->load->view('footer');*/
 	}
 
 	//START OPEN
-
 	public function open()
 	{
 		$data['data_open'] 	= $this->PerformAss->get_all_data();
@@ -89,17 +204,38 @@ class PerformAssurance extends CI_Controller {
     	$full 	= date("Y-m-d", $today); //get date
     	$month 	= date("m", $today); //get month
 
-    	$start 	= "2017-06-01";
+    	$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	    for($i = 1; $i <= count($kota); $i++){
+	        $data[$kota[$i]] = $this->PerformAss->get_this_month($kota[$i], $month);
+	    }
+
+	    echo "<pre>";
+	    print_r($data);
+	    echo "</pre>";
+
+    	/*$this->load->view('header');
+		$this->load->view('report_open_month', $data);
+		$this->load->view('footer');*/
+    }
+
+    public function rom(){
+		$month 		= $this->input->post('bln');
+		$mipa 		= $this->input->post('mipa');
+		$tech 		= $this->input->post('tech');
 
     	$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
 	    for($i = 1; $i <= count($kota); $i++){
-	        $data[$kota[$i]] = $this->PerformAss->get_this_month($kota[$i], $start, $full);
+	        $data[$kota[$i]] = $this->PerformAss->get_search($month, $mipa, $tech, $kota[$i]);
 	    }
 
-    	$this->load->view('header');
-		$this->load->view('report_open_month', $data);
-		$this->load->view('footer');
-    }
+	    echo "<pre>";
+	    print_r($data);
+	    echo "</pre>";
+
+		/*$this->load->view('header');
+		$this->load->view('report_close_month', $data);
+		$this->load->view('footer');*/
+	}
 
     public function report_open_yeartodate(){
     	$this->load->view('header');
@@ -270,58 +406,37 @@ class PerformAssurance extends CI_Controller {
 	}
 
 	public function report_close_month(){
-		$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
-	      for($i = 1; $i <= count($kota); $i++){
-	        $data['kota'][$kota[$i]] = $this->PerformAss->get_all_month_close($kota[$i]);
-	    }
-
-	    echo "<pre>";
-	    print_r($data);
-	    echo "</pre>";
-
-		/*$this->load->view('header');
-		$this->load->view('report_close_month', $data);
-		$this->load->view('footer');*/
-	}
-
-	public function rom(){
-		$bln 		= $this->input->post('bln');
-		$mipa 		= $this->input->post('mipa');
-		$tech 		= $this->input->post('tech');
-
 		$today 	= time(); //get today
-    	//$full 	= date("Y-m-d", $today); //get date
+    	$full 	= date("Y-m-d", $today); //get date
     	$month 	= date("m", $today); //get month
-
-    	$start 	= "2017-04-01";
-    	$full 	= "2017-04-30";
-
-    	//echo $full;
-
-    	/*echo $mipa;
-    	echo "<br>";
-    	echo $tech;*/
 
     	$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
 	    for($i = 1; $i <= count($kota); $i++){
-	        $data[$kota[$i]] = $this->PerformAss->get_search($kota[$i], $start, $full, $mipa, $tech);
+	        $data[$kota[$i]] = $this->PerformAss->get_this_month_close($kota[$i], $month);
 	    }
 
-    	/*$this->load->view('header');
-		$this->load->view('report_open_month', $data);
-		$this->load->view('footer');*/
+	    /*echo "<pre>";
+	    print_r($data);
+	    echo "</pre>";*/
 
-		//$data['rom']   = $this->PerformAss->get_search($bln, $mipa, $tech);
+		$this->load->view('header');
+		$this->load->view('report_close_month', $data);
+		$this->load->view('footer');
+	}
 
+	public function rom_close(){
+		$month 		= $this->input->post('bln');
+		$mipa 		= $this->input->post('mipa');
+		$tech 		= $this->input->post('tech');
 
-		/*$this->load->view('header');
-	    $this->load->view('rev_base_date', $data);
-	    $this->load->view('footer');*/
+		/*echo $month."<br>";
+		echo $mipa."<br>";
+		echo $tech."<br>";*/
 
-		/*$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
-	      for($i = 1; $i <= count($kota); $i++){
-	        $data['kota'][$kota[$i]] = $this->PerformAss->get_all_month_close($kota[$i]);
-	    }*/
+		$kota  = array(1=>"MADIUN","MALANG","KEDIRI","JEMBER","PASURUAN");
+	    for($i = 1; $i <= count($kota); $i++){
+	        $data[$kota[$i]] = $this->PerformAss->get_search_close($month, $mipa, $tech, $kota[$i]);
+	    }
 
 	    echo "<pre>";
 	    print_r($data);
