@@ -30,8 +30,6 @@
   $('.FormSearch').submit(function(e){
     e.preventDefault();
   });
-
-  $( “c1” ).triggerHandler( “click” );
 </script>
 
 <!--SearchSN end-->

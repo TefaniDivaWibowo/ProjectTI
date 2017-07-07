@@ -40,33 +40,25 @@
   //OPEN
     //FOR REPORT YEAR MONTH
     function get_this_month($kota, $month){
-        $query  = $this->db->query("SELECT ttr_customer, COUNT(customer_name) FROM data_open WHERE witel LIKE '%". $kota ."%' GROUP BY ttr_customer ORDER BY ttr_customer");
+        $query  = $this->db->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from ttr_customer) = '". $month ."' GROUP BY ttr_customer ORDER BY ttr_customer");
         return $query->result();
     }
 
      //FOR REPORT  MONTH
-    function get_search($kota, $start, $full, $mipa, $tech){
+    function get_search($month, $mipa, $tech, $kota){
       if ($mipa == "all" && $tech == "all"){
         $cari = $this->db
-                     ->select('*')
-                     ->from('data_open')
-                     ->group_by('witel')
-                     ->order_by('ttr_customer')
-                     ->get();
+                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from ttr_customer) = '". $month ."' GROUP BY ttr_customer ORDER BY ttr_customer");
       } elseif ($mipa == "all") {
         $cari = $this->db
-                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE (ttr_customer BETWEEN '". $start ."' AND '". $full ."') AND technology = '" . $tech ."' GROUP BY ttr_customer ORDER BY ttr_customer");
+                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from ttr_customer) = '". $month ."' AND technology = '" . $tech ."' GROUP BY ttr_customer ORDER BY ttr_customer");
       } elseif ($mipa == "PA") {
         $cari = $this->db
-                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE (ttr_customer BETWEEN '". $start ."' AND '". $full ."') AND witel LIKE '". $kota ."'AND mitra_pa != 'TA'  GROUP BY ttr_customer ORDER BY ttr_customer");
+                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from ttr_customer) = '". $month ."' AND mitra_pa != 'TA'  GROUP BY ttr_customer ORDER BY ttr_customer");
       } elseif ($mipa == "TA") {
         $cari = $this->db
-                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE (ttr_customer BETWEEN '". $start ."' AND '". $full ."') AND technology = '" . $tech ."' GROUP BY ttr_customer ORDER BY ttr_customer");
-      } else {
-        $cari = $this->db
-                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE (ttr_customer BETWEEN '". $start ."' AND '". $full ."') AND mitra_pa = '" . $mipa ."' AND technology = '' GROUP BY ttr_customer ORDER BY ttr_customer");
+                     ->query("SELECT ttr_customer, count(customer_name) FROM data_open WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from ttr_customer) = '". $month ."' AND mitra_pa = 'TA' GROUP BY ttr_customer ORDER BY ttr_customer");
       }
-
       return $cari->result();
     }
 
@@ -107,10 +99,82 @@
       return $query->result_array();
     }
 
+    //Get Total Data Close
+    function get_total_data_close(){
+      $this->db->from('data_close');
+      $query  = $this->db->get();
+      return $query->num_rows();
+    }
+
+    //Get Reported & Status All
+    function get_data_retu(){
+      $query = $this->db->select('reported_date')
+               ->select('status_date')
+               ->from('data_close')
+               ->get();
+      return $query->result();
+    }
+
+    //Get Data Close Fiber
+    function get_total_data_close_f(){
+      $query  = $this->db->select('*')
+                         ->from('data_close')
+                         ->where('technology', 'Fiber')
+                         ->get();
+      return $query->num_rows();
+    }
+
+    //Get Reported & Status Fiber
+    function get_data_retu_fiber(){
+      $query = $this->db->select('reported_date')
+               ->select('status_date')
+               ->from('data_close')
+               ->where('technology', 'Fiber')
+               ->get();
+      return $query->result();
+    }
+
+    //Get Data Close Copper
+    function get_total_data_close_c(){
+      $query  = $this->db->select('*')
+               ->from('data_close')
+               ->where('technology', 'Fiber')
+               ->get();
+      return $query->num_rows();
+    }
+
+    //Get Reported & Status Copper
+    function get_data_retu_copper(){
+      $query = $this->db->select('reported_date')
+               ->select('status_date')
+               ->from('data_close')
+               ->where('technology', 'Copper')
+               ->get();
+      return $query->result();
+    }
+
     //FOR REPORT YEAR MONTH
-    function get_all_month_close($kota){
-        $query  = $this->db->query("SELECT tgl_open, COUNT(customer_name) FROM data_close WHERE witel LIKE '%". $kota ."%' GROUP BY tgl_open ORDER BY tgl_open");
+    function get_this_month_close($kota, $month){
+        $query  = $this->db->query("SELECT tgl_open, count(customer_name) FROM data_close WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from tgl_open) = '". $month ."' GROUP BY tgl_open ORDER BY tgl_open");
         return $query->result();
+    }
+
+    //FOR REPORT  MONTH
+    function get_search_close($month, $mipa, $tech, $kota){
+      if ($mipa == "all" && $tech == "all"){
+        $cari2 = $this->db
+                     ->query("SELECT tgl_open, count(customer_name) FROM data_close WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from tgl_open) = '". $month ."' GROUP BY tgl_open ORDER BY tgl_open");
+      } elseif ($mipa == "all") {
+        $cari2 = $this->db
+                     ->query("SELECT tgl_open, count(customer_name) FROM data_close WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from tgl_open) = '". $month ."' AND technology = '" . $tech ."' GROUP BY tgl_open ORDER BY tgl_open");
+      } elseif ($mipa == "PA") {
+        $cari2 = $this->db
+                     ->query("SELECT tgl_open, count(customer_name) FROM data_close WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from tgl_open) = '". $month ."' AND mitra_pa != 'TA'  GROUP BY tgl_open ORDER BY tgl_open");
+      } elseif ($mipa == "TA") {
+        $cari2 = $this->db
+                     ->query("SELECT tgl_open, count(customer_name) FROM data_close WHERE witel LIKE '%". $kota ."%' AND EXTRACT(MONTH from tgl_open) = '". $month ."' AND mitra_pa = 'TA' GROUP BY tgl_open ORDER BY tgl_open");
+      }
+      return $cari2->result();
     }
 
     //All Data by Date

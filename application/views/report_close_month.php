@@ -49,10 +49,11 @@ div.pager span.active {
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"><!--<a href="#" title="Go to Home" class="tip-bottom">--></div>
-    <h1>Report Open Per-Month</h1>
+    <h1>Report Close Per-Month</h1>
   </div>
   <div class="container-fluid">
     <hr>
+    <form action="<?= base_url('index.php/PerformAssurance/rom_close')?>" method="post">
     <div class="row-fluid">
       <div class="span12">
         <div class="controls form-group">
@@ -61,15 +62,28 @@ div.pager span.active {
           </div>
           &nbsp;&nbsp;&nbsp;
           <div class="span7">
-            <select>
-              <option value="all">All</option>
+            <select name="bln">
               <?php
-                $bln  = array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
-                for($bulan = 1; $bulan <= 12; $bulan++){
-                  if($bulan <= 9) { 
-                    echo "<option value='$bulan'>$bln[$bulan]</option>"; 
-                  } else { 
-                    echo "<option value='$bulan'>$bln[$bulan]</option>"; 
+                $monthName  = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+                for ($i=0; $i < count($monthName); $i++) { 
+                  $mn   = 1 + $i;
+                  if ($mn == date("m")) {
+                    if ($mn < 9) {
+                      $bln  = "0" . $mn;
+                      echo "<option selected value=". $bln .">" . $monthName[$i] . "</option>";
+                    }
+                    else {
+                      echo "<option value=". $mn .">" . $monthName[$i] . "</option>";
+                    }
+                  } 
+                  else {
+                    if ($mn < 9) {
+                      $bln  = "0" . $mn;
+                      echo "<option value=". $bln .">" . $monthName[$i] . "</option>";
+                    } 
+                    else {
+                      echo "<option value=". $mn .">" . $monthName[$i] . "</option>";
+                    }
                   }
                 }
               ?>
@@ -86,7 +100,7 @@ div.pager span.active {
           </div>
           &nbsp;&nbsp;&nbsp;
           <div class="span7">
-            <select>
+            <select name="mipa">
               <option value="all">All</option>
               <option value="pa">PA</option>
               <option value="ta">TA</option>
@@ -103,7 +117,7 @@ div.pager span.active {
           </div>
           &nbsp;&nbsp;&nbsp;
           <div class="span7">
-            <select>
+            <select name="tech">
               <option value="all">All</option>
               <option value="copper">Copper</option>
               <option value="fiber">Fiber</option>
@@ -140,53 +154,29 @@ div.pager span.active {
               <tbody>
                 <tr>
                   <th>Madiun</th>
-                  <?php
-                    foreach ($MADIUN as $row) {
-                      $time = strtotime($row->tgl_open);
-                      $tgl  = date("d", $time);
-                  ?>
                 </tr>
                 <tr>
                   <th>Malang</th>
-                  <?php
-                    for ($i=1; $i < 31; $i++) { 
-                      echo "<td>$i</td>";
-                    }
-                  ?>
                 </tr>
                 <tr>
                   <th>Kediri</th>
-                  <?php
-                    for ($i=1; $i < 31; $i++) { 
-                      echo "<td>$i</td>";
-                    }
-                  ?>
                 </tr>
                 <tr>
                   <th>Jember</th>
-                  <?php
-                    for ($i=1; $i < 31; $i++) { 
-                      echo "<td>$i</td>";
-                    }
-                  ?>
                 </tr>
                 <tr>
                   <th>Pasuruan</th>
-                  <?php
-                    for ($i=1; $i < 31; $i++) { 
-                      echo "<td>$i</td>";
-                    }
-                  ?>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th></th>
-                  <?php
-                    for ($i=1; $i < 31; $i++) { 
-                      echo "<th>$i</th>";
-                    }
-                  ?>
+                  <th>
+                    <?php
+                      for ($i=1; $i < 31; $i++) { 
+                        echo "<th>$i</th>";
+                      }
+                    ?>
+                  </th>
                 </tr>
               </tfoot>
             </table>
@@ -194,8 +184,8 @@ div.pager span.active {
           </div>
       </div>
     </div>
+    </form>
   </div>
-
 </div>
 
 
